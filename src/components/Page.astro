@@ -1,0 +1,33 @@
+---
+interface Props {
+    title: string;
+    description: string;
+}
+
+const { title, description }: Props = Astro.props;
+---
+
+<html lang="zh">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content={description} />
+
+        <title>{title}</title>
+    </head>
+
+    <!-- global style -->
+    <style is:global>
+        a {
+            @apply underline;
+        }
+    </style>
+
+    <body class="p-2 w-dvw">
+        <div class="bg-orange-50">
+            <slot />
+        </div>
+    </body>
+</html>

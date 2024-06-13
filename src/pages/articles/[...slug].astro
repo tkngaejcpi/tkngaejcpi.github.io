@@ -1,0 +1,29 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+import Page from "@components/Page.astro";
+import Navigation from "@components/Navigation.astro";
+
+export const getStaticPaths = (async () => {
+    const articles = await getCollection("articles");
+
+    return articles.map((article) => ({
+        params: { slug: article.slug },
+        props: { article },
+    }));
+}) satisfies GetStaticPaths;
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+---
+
+<Page title={article.data.title} description="">
+    <div class="flex flex-col">
+		<Navigation/>
+
+		<div class="p-1">
+			<Content/>
+		</div>
+	</div>
+</Page>

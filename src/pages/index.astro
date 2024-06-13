@@ -1,16 +1,29 @@
 ---
+import ArticleList from "@components/ArticleList.astro";
+import Navigation from "@components/Navigation.astro";
+import Page from "@components/Page.astro";
 
+import { mkArticleQueryByTag } from "@models/ArticleQuery";
+
+const showingTags = ["Example"];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Page title="Riley's Blog" description="">
+	<div class="flex flex-col">
+		<Navigation />
+
+		<div class="flex flex-col gap-2">
+			{
+				showingTags.map((tag) => (
+					<div class="p-2">
+						<h2 class="font-bold">{tag}</h2>
+						<ArticleList
+							articleQuery={mkArticleQueryByTag(tag)}
+							maxArticles={5}
+						/>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</Page>
