@@ -19,16 +19,16 @@ const { title, description }: Props = Astro.props;
 
         <title>{title}</title>
         <ViewTransitions />
-    </head>
+        <style is:global>
+            a {
+                @apply underline;
+            }
+        </style></head
+    >
 
     <!-- global style -->
-    <style is:global>
-        a {
-            @apply underline;
-        }
-    </style>
 
-    <body class="p-2 w-dvw">
+    <body class="lg:p-2 w-dvw">
         <div class="bg-orange-50">
             <slot />
         </div>
