@@ -20,11 +20,25 @@ export const idQuery: ArticleQuery = {
 }
 
 /**
+ * @description an Article Query, that return all the result, alias to idQuery
+ */
+export const allArticle: ArticleQuery = {
+    query: (x) => x
+}
+
+/**
  * @description an Article Query constructor, that takes a tag,
  * and make an Article Query that return the articles that contains that tag.
  */
 export const mkArticleQueryByTag = (tag: Tag): ArticleQuery => ({
     query: (articles) => articles.filter((article) => article.data.tags.includes(tag))
+})
+
+/**
+ * @description an Article Query operator, that takes first n result.
+ */
+export const firstN = (n: number) => (articleQuery: ArticleQuery): ArticleQuery => ({
+    query: (articles) =>  articleQuery.query(articles).slice(0, n)
 })
 
 /**

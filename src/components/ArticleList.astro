@@ -3,20 +3,23 @@ import { query, type ArticleQuery } from "@models/ArticleQuery";
 
 interface Props {
     articleQuery: ArticleQuery;
-    maxArticles: number;
 }
 
-const { articleQuery, maxArticles }: Props = Astro.props;
+const { articleQuery }: Props = Astro.props;
 
-const articles = await query(articleQuery).then((x) => x.slice(0, maxArticles));
+const articles = await query(articleQuery);
 ---
 
 <ul>
     {
         articles.map((article) => (
             <li class="flex flex-row">
-                <a class="mr-auto" href={`articles/${article.slug}`}>{article.data.title}</a>
-                <span class="text-sm text-gray-600 mt-auto">{article.data.lastEditedDate.toLocaleDateString()}</span>
+                <a class="mr-auto" href={`articles/${article.slug}`}>
+                    {article.data.title}
+                </a>
+                <span class="text-sm text-gray-600 mt-auto">
+                    {article.data.lastEditedDate.toLocaleDateString()}
+                </span>
             </li>
         ))
     }

@@ -2,8 +2,10 @@
 import ArticleList from "@components/ArticleList.astro";
 import Navigation from "@components/Navigation.astro";
 import Page from "@components/Page.astro";
+import { firstN } from "@models/ArticleQuery";
 
-import { idQuery } from "@models/ArticleQuery";
+import { allArticle } from "@models/ArticleQuery";
+import { pipe } from "@utils/pipe";
 ---
 
 <Page title="Riley's Blog" description="">
@@ -12,7 +14,7 @@ import { idQuery } from "@models/ArticleQuery";
 
         <div class="p-2">
             <h2 class="font-bold">All Articles</h2>
-            <ArticleList articleQuery={idQuery} maxArticles={5} />
+            <ArticleList articleQuery={pipe(allArticle, firstN(5))} />
         </div>
     </div>
 </Page>

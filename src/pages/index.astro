@@ -3,7 +3,8 @@ import ArticleList from "@components/ArticleList.astro";
 import Navigation from "@components/Navigation.astro";
 import Page from "@components/Page.astro";
 
-import { mkArticleQueryByTag } from "@models/ArticleQuery";
+import { firstN, mkArticleQueryByTag } from "@models/ArticleQuery";
+import { pipe } from "@utils/pipe";
 
 const showingTags = ["Example"];
 ---
@@ -18,8 +19,10 @@ const showingTags = ["Example"];
 					<div class="p-2">
 						<h2 class="font-bold">{tag}</h2>
 						<ArticleList
-							articleQuery={mkArticleQueryByTag(tag)}
-							maxArticles={5}
+							articleQuery={pipe(
+								mkArticleQueryByTag(tag),
+								firstN(5),
+							)}
 						/>
 					</div>
 				))
