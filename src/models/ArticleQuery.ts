@@ -1,4 +1,4 @@
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from 'astro:content';
 
 type Article = CollectionEntry<'articles'>;
 
@@ -9,39 +9,43 @@ type Tag = Article['data']['tags'][0];
  * Notice that an Article Query should be created by constructors.
  */
 export interface ArticleQuery {
-    query: (articles: Article[]) => Article[]
+  query: (articles: Article[]) => Article[];
 }
 
 /**
  * @description an Article Query, that return all the result
  */
 export const idQuery: ArticleQuery = {
-    query: (x) => x
-}
+  query: (x) => x,
+};
 
 /**
  * @description an Article Query, that return all the result, alias to idQuery
  */
 export const allArticle: ArticleQuery = {
-    query: (x) => x
-}
+  query: (x) => x,
+};
 
 /**
  * @description an Article Query constructor, that takes a tag,
  * and make an Article Query that return the articles that contains that tag.
  */
 export const mkArticleQueryByTag = (tag: Tag): ArticleQuery => ({
-    query: (articles) => articles.filter((article) => article.data.tags.includes(tag))
-})
+  query: (articles) =>
+    articles.filter((article) => article.data.tags.includes(tag)),
+});
 
 /**
  * @description an Article Query operator, that takes first n result.
  */
-export const firstN = (n: number) => (articleQuery: ArticleQuery): ArticleQuery => ({
-    query: (articles) =>  articleQuery.query(articles).slice(0, n)
-})
+export const firstN =
+  (n: number) =>
+  (articleQuery: ArticleQuery): ArticleQuery => ({
+    query: (articles) => articleQuery.query(articles).slice(0, n),
+  });
 
 /**
  * @description an function that takes an Article Query, and async return the result.
  */
-export const query = async (articleQuery: ArticleQuery): Promise<Article[]> => (articleQuery.query(await getCollection('articles')))
+export const query = async (articleQuery: ArticleQuery): Promise<Article[]> =>
+  articleQuery.query(await getCollection('articles'));
