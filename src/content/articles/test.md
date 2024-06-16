@@ -1,5 +1,6 @@
 ---
 title: 'Example'
+altLangTitle: ['Ein Beispiel']
 tags: ['Example']
 lastEditedDate: 2024-06-14
 ---

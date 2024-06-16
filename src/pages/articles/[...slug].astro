@@ -18,12 +18,15 @@ const { article } = Astro.props;
 const { Content } = await article.render();
 ---
 
-<Page title={article.data.title} description="">
+<Page
+    title={article.data.title}
+    description={[article.data.title, ...article.data.altLangTitle].join(" | ")}
+>
     <div class="flex flex-col">
-		<Navigation/>
+        <Navigation />
 
-		<div class="p-2">
-			<Content/>
-		</div>
-	</div>
+        <div class="p-2">
+            <Content />
+        </div>
+    </div>
 </Page>
