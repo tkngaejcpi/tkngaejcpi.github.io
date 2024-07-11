@@ -1,0 +1,35 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+
+import Page from '@components/astro/Page.astro';
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('posts');
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Page
+  title={post.data.title}
+  description={post.data.description || post.data.title}
+>
+  <div class="px-4 py-2">
+    <h1
+      class="mb-4 py-4 text-2xl font-bold text-neutral-900 border-b-2 border-neutral-400"
+    >
+      {post.data.title}
+    </h1>
+
+    <article class="prose prose-neutral overflow-y-scroll">
+      <Content />
+    </article>
+  </div>
+</Page>

@@ -1,0 +1,50 @@
+---
+import Page from '@components/astro/Page.astro';
+
+import { getCollection } from 'astro:content';
+
+/* take first 10 posts, ordered by created date, to generate index */
+const posts = await getCollection('posts').then((posts) =>
+  posts
+    .sort((a, b) => b.data.createdDate.getTime() - a.data.createdDate.getTime())
+    .slice(0, 10),
+);
+---
+
+<Page title="廢話集散空間" description="什麼都可能寫，喜歡也好，不喜歡也好。">
+  <div class="flex flex-col text-neutral-800">
+    <div
+      class="flex flex-col gap-2 items-center mx-4 pt-8 pb-4 border-b-2 border-neutral-400"
+    >
+      <h1 class="text-3xl font-bold">廢話集散空間</h1>
+
+      <p class="text-sm font-medium text-center text-neutral-600">
+        最好沒有人明白我說什麼<br />只有你聽懂我想什麼
+      </p>
+    </div>
+
+    <ul class="px-4">
+      {
+        posts.map((post) => (
+          <li class="py-3 px-1 border-b-2 border-dashed border-neutral-400">
+            <a href={`/posts/${post.slug}`}>
+              <article>
+                <h2 class="text-lg font-bold">{post.data.title}</h2>
+
+                <p class="text-xs text-neutral-400">
+                  {post.data.createdDate.toLocaleDateString()}
+                </p>
+
+                <img class="my-2" src={post.data.cover} />
+
+                <p class="text-neutral-800 text-sm">{post.data.description}</p>
+              </article>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="text-center p-3">🥑</p>
+  </div>
+</Page>
