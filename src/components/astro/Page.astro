@@ -18,12 +18,19 @@ const { title, description }: Props = Astro.props;
     <meta name="description" content={description} />
 
     <title>{title}</title>
+
     <ViewTransitions />
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "1af2ff6d8500407887eff75909a5f0af"}'
+    ></script><!-- End Cloudflare Web Analytics -->
   </head>
 
   <!-- global style -->
 
   <body class="bg-orange-50 w-dvw min-h-dvh">
-    <slot/>
+    <slot />
   </body>
 </html>
