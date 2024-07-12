@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { slide, ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -20,6 +20,7 @@ const { title, description }: Props = Astro.props;
     <title>{title}</title>
 
     <ViewTransitions />
+
     <!-- Cloudflare Web Analytics -->
     <script
       defer
@@ -30,7 +31,12 @@ const { title, description }: Props = Astro.props;
 
   <!-- global style -->
 
-  <body class="bg-orange-50 w-dvw min-h-dvh">
+  <body
+    class="bg-orange-50 w-dvw min-h-dvh"
+    transition:animate={slide({
+      duration: 200,
+    })}
+  >
     <slot />
   </body>
 </html>
