@@ -28,18 +28,22 @@ const { title, description, structuredData }: Props = Astro.props;
     -->
     {
       structuredData ? (
-        <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+        <script
+          type="application/ld+json"
+          set:html={JSON.stringify(structuredData)}
+          is:inline
+        />
       ) : null
     }
 
     <ViewTransitions />
 
-    <!-- Cloudflare Web Analytics -->
+    <!-- cloudflare web analytics -->
     <script
       defer
       src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "71a7ec5c47a94722bf03153f5185fbb3"}'></script>
-    <!-- End Cloudflare Web Analytics -->
+      data-cf-beacon='{"token": "71a7ec5c47a94722bf03153f5185fbb3"}'
+      is:inline></script>
   </head>
 
   <body
