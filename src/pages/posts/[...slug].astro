@@ -3,6 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 
 import Page from '@components/astro/Page.astro';
+import { slide } from 'astro:transitions';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('posts');
@@ -37,7 +38,12 @@ const { Content } = await post.render();
     ],
   }}
 >
-  <div class="px-4">
+  <div
+    class="px-4"
+    transition:animate={slide({
+      duration: 200,
+    })}
+  >
     <div class="mb-4 border-b-2 border-neutral-400 pb-2 pt-4">
       <h1 class="text-2xl font-bold text-neutral-800">
         {post.data.title}

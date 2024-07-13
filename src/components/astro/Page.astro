@@ -1,5 +1,5 @@
 ---
-import { slide, ViewTransitions } from 'astro:transitions';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -46,12 +46,7 @@ const { title, description, structuredData }: Props = Astro.props;
       is:inline></script>
   </head>
 
-  <body
-    class="min-h-dvh w-dvw bg-orange-50"
-    transition:animate={slide({
-      duration: 200,
-    })}
-  >
+  <body class="min-h-dvh w-dvw bg-orange-50">
     <slot />
   </body>
 </html>

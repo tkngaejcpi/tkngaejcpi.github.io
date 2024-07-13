@@ -3,6 +3,7 @@ import BlogInfo from '@components/astro/BlogInfo.astro';
 import Page from '@components/astro/Page.astro';
 
 import { getCollection } from 'astro:content';
+import { slide } from 'astro:transitions';
 
 /* get all posts, to list them in the archive page */
 const posts = await getCollection('posts').then((posts) =>
@@ -16,7 +17,12 @@ const posts = await getCollection('posts').then((posts) =>
   <div class="flex flex-col text-neutral-800">
     <BlogInfo />
 
-    <ul class="px-4">
+    <ul
+      class="px-4"
+      transition:animate={slide({
+        duration: 200,
+      })}
+    >
       {
         posts.map((post) => (
           <li class="px-1 pb-1 pt-3">
