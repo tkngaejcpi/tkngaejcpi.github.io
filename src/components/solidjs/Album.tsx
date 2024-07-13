@@ -19,7 +19,7 @@ const Album = (props: Props) => {
     setIndex((i) => (i > 0 ? i - 1 : images.length - 1));
   };
   const nextSlide = () => {
-    setIndex((i) => (i < images.length ? i + 1 : 0));
+    setIndex((i) => (i < images.length - 1 ? i + 1 : 0));
   };
 
   return (
