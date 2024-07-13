@@ -20,6 +20,22 @@ const { Content } = await post.render();
 <Page
   title={post.data.title}
   description={post.data.description || post.data.title}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+
+    headline: post.data.title,
+    images: post.data.cover ? [post.data.cover] : [],
+    datePublished: post.data.createdDate.toISOString(),
+
+    author: [
+      {
+        '@type': 'Person',
+        name: 'Riley Chang',
+        url: 'https://blog.rileycki.com',
+      },
+    ],
+  }}
 >
   <div class="px-4">
     <div class="mb-4 pt-4 pb-2 border-b-2 border-neutral-400">
