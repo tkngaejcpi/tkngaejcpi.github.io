@@ -2,6 +2,7 @@
 const config = {
   plugins: [
     '@trivago/prettier-plugin-sort-imports',
+    'prettier-plugin-astro',
     'prettier-plugin-tailwindcss',
   ],
 
@@ -9,6 +10,15 @@ const config = {
   tabWidth: 2,
   semi: true,
   singleQuote: true,
+
+  overrides: [
+    {
+      files: '*.astro',
+      options: {
+        parser: 'astro',
+      },
+    },
+  ],
 
   /* prettier sort import settings */
   importOrder: [

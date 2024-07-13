@@ -19,11 +19,11 @@ const posts = await getCollection('posts').then((posts) =>
     <ul class="px-4">
       {
         posts.map((post) => (
-          <li class="pt-3 pb-1 px-1">
+          <li class="px-1 pb-1 pt-3">
             <a href={`/posts/${post.slug}`}>
               <span class="mr-1 font-bold italic">*</span>
               <span class="font-medium">{post.data.title}</span>
-              <span class="text-sm text-neutral-400 float-end mr-1">
+              <span class="float-end mr-1 text-sm text-neutral-400">
                 {post.data.createdDate.toLocaleDateString()}
               </span>
             </a>
