@@ -1,4 +1,5 @@
 ---
+import BlogInfo from '@components/astro/BlogInfo.astro';
 import Page from '@components/astro/Page.astro';
 
 import { getCollection } from 'astro:content';
@@ -12,16 +13,8 @@ const posts = await getCollection('posts').then((posts) =>
 ---
 
 <Page title="廢話集散空間" description="什麼都可能寫，喜歡也好，不喜歡也好。">
-  <div class="flex flex-col text-neutral-800">
-    <div
-      class="flex flex-col gap-2 items-center mx-4 pt-8 pb-4 border-b-2 border-neutral-400"
-    >
-      <h1 class="text-3xl font-bold">廢話集散空間</h1>
-
-      <p class="text-sm font-medium text-center text-neutral-600">
-        最好沒有人明白我說什麼<br />只有你聽懂我想什麼
-      </p>
-    </div>
+  <div class="flex flex-col">
+    <BlogInfo/>
 
     <ul class="px-4">
       {
