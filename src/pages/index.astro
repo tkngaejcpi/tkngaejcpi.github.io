@@ -3,7 +3,6 @@ import BlogInfo from '@components/astro/BlogInfo.astro';
 import Page from '@components/astro/Page.astro';
 
 import { getCollection } from 'astro:content';
-import { slide } from 'astro:transitions';
 
 /* take first 10 posts, ordered by created date, to generate index */
 const posts = await getCollection('posts').then((posts) =>
