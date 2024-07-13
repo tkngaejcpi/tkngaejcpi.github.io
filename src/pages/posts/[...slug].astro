@@ -22,11 +22,14 @@ const { Content } = await post.render();
   description={post.data.description || post.data.title}
 >
   <div class="px-4">
-    <h1
-      class="mb-4 py-4 text-2xl font-bold text-neutral-900 border-b-2 border-neutral-400"
-    >
-      {post.data.title}
-    </h1>
+    <div class="mb-4 pt-4 pb-2 border-b-2 border-neutral-400">
+      <h1 class="text-2xl font-bold text-neutral-800">
+        {post.data.title}
+      </h1>
+      <p class="mt-1 text-neutral-400">
+        {post.data.createdDate.toLocaleDateString()}
+      </p>
+    </div>
 
     <article class="prose prose-neutral overflow-y-scroll">
       <Content />
