@@ -24,11 +24,11 @@ const posts = await getCollection('posts').then((posts) =>
               <article>
                 <h2 class="text-lg font-bold">{post.data.title}</h2>
 
-                <p class="text-xs text-neutral-400">
+                <p class="text-xs mb-1 text-neutral-400">
                   {post.data.createdDate.toLocaleDateString()}
                 </p>
 
-                <img class="my-2" src={post.data.cover} />
+                {post.data.cover? <img class="my-2" src={post.data.cover} />: null}
 
                 <p class="text-neutral-800 text-sm">{post.data.description}</p>
               </article>
@@ -38,6 +38,6 @@ const posts = await getCollection('posts').then((posts) =>
       }
     </ul>
 
-    <p class="text-center p-3">🥑</p>
+    <p class="text-center p-3 italic text-sm text-neutral-600 font-medium">~主頁僅顯示最近十則~</p>
   </div>
 </Page>
