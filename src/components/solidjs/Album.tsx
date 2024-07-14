@@ -24,7 +24,7 @@ const Album = (props: Props) => {
 
   return (
     <div class="not-prose flex flex-col gap-2 border-neutral-800">
-      <img src={currentSlide().src} />
+      <img src={currentSlide().src} alt={currentSlide().description} />
 
       <p>{currentSlide().description}</p>
 
