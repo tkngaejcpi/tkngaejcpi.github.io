@@ -1,9 +1,13 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
-import { fade } from 'astro:transitions';
 
 import Page from '@components/astro/Page.astro';
+
+import { defaultBlogConfig } from '@models/BlogConfig';
+import { mkArticleStructuredData } from '@models/StructuredData';
+
+import { mkLocaleDateString } from '@utils/date';
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection('posts');
@@ -21,29 +25,9 @@ const { Content } = await post.render();
 <Page
   title={post.data.title}
   description={post.data.description || post.data.title}
-  structuredData={{
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-
-    headline: post.data.title,
-    images: post.data.cover ? [post.data.cover] : [],
-    datePublished: post.data.createdDate.toISOString(),
-
-    author: [
-      {
-        '@type': 'Person',
-        name: 'Riley Chang',
-        url: 'https://blog.rileycki.com',
-      },
-    ],
-  }}
+  structuredData={mkArticleStructuredData(defaultBlogConfig)(post)}
 >
-  <div
-    class="px-4"
-    transition:animate={fade({
-      duration: 300,
-    })}
-  >
+  <div class="px-4" transition:animate={defaultBlogConfig.fadeTransition}>
     <div class="mb-4 border-b-2 border-neutral-400 pb-2 pt-4">
       <h1 class="text-2xl font-bold text-neutral-800">
         {post.data.title}
@@ -60,7 +44,7 @@ const { Content } = await post.render();
       </p>
 
       <p class="mt-1 text-neutral-400">
-        {post.data.createdDate.toLocaleDateString()}
+        {mkLocaleDateString(defaultBlogConfig)(post.data.createdDate)}
       </p>
     </div>
 

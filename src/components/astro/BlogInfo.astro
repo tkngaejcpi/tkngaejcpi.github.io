@@ -1,25 +1,30 @@
 ---
-interface Navigation {
-  emoji: string;
-  description: string;
-  location: string;
+import type { BlogConfig } from '@models/BlogConfig';
+import type { Navigation } from '@models/Navigation';
+
+/* props */
+interface Props {
+  blogConfig: BlogConfig;
+  navigations: Navigation[];
 }
 
-const navigations: Navigation[] = [
-  { emoji: '🏡', description: '主頁', location: '/' },
-  { emoji: '🗃️', description: '歸檔', location: '/archive' },
-  { emoji: '📡', description: 'RSS', location: '/rss.xml' },
-];
+const { blogConfig, navigations } = Astro.props;
 ---
 
 <div
   class="mx-4 flex flex-col items-center gap-2 border-b-2 border-neutral-400 pb-4 pt-8 text-neutral-800"
 >
-  <h1 class="text-3xl font-bold">廢話集散空間</h1>
+  <h1 class="text-3xl font-bold">{blogConfig.title}</h1>
 
-  <p class="text-center text-sm font-medium text-neutral-600">
-    最好沒有人明白我說什麼<br />只有你聽懂我想什麼
-  </p>
+  <div>
+    {
+      blogConfig.subtitleLines.map((subtitleLine) => (
+        <p class="text-center text-sm font-medium text-neutral-600">
+          {subtitleLine}
+        </p>
+      ))
+    }
+  </div>
 
   <ul class="flex flex-row gap-4">
     {

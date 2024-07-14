@@ -1,11 +1,13 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 
+import type { StructuredData } from '@models/StructuredData';
+
 interface Props {
   title: string;
   description: string;
 
-  structuredData?: object;
+  structuredData?: StructuredData;
 }
 
 const { title, description, structuredData }: Props = Astro.props;

@@ -1,9 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import { slide } from 'astro:transitions';
 
 import BlogInfo from '@components/astro/BlogInfo.astro';
 import Page from '@components/astro/Page.astro';
+
+import { defaultBlogConfig } from '@models/BlogConfig';
+import { defaultNavigations } from '@models/Navigation';
+
+import { mkLocaleDateString } from '@utils/date';
 
 /* take first 10 posts, ordered by created date, to generate index */
 const posts = await getCollection('posts').then((posts) =>
@@ -13,16 +17,14 @@ const posts = await getCollection('posts').then((posts) =>
 );
 ---
 
-<Page title="廢話集散空間" description="什麼都可能寫，喜歡也好，不喜歡也好。">
+<Page
+  title={defaultBlogConfig.title}
+  description={defaultBlogConfig.description}
+>
   <div class="flex flex-col">
-    <BlogInfo />
+    <BlogInfo blogConfig={defaultBlogConfig} navigations={defaultNavigations} />
 
-    <ul
-      class="px-4"
-      transition:animate={slide({
-        duration: 150,
-      })}
-    >
+    <ul class="px-4" transition:animate={defaultBlogConfig.slideTransition}>
       {
         posts.map((post) => (
           <li class="border-b-2 border-dashed border-neutral-400 px-1 py-3">
@@ -39,7 +41,7 @@ const posts = await getCollection('posts').then((posts) =>
                 </p>
 
                 <p class="mb-1 text-xs text-neutral-400">
-                  {post.data.createdDate.toLocaleDateString()}
+                  {mkLocaleDateString(defaultBlogConfig)(post.data.createdDate)}
                 </p>
 
                 {post.data.cover ? (
