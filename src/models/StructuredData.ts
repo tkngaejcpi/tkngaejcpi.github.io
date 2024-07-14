@@ -11,7 +11,7 @@ export interface ArticleStructuredData {
   '@type': 'Article';
 
   headline: string;
-  images: string[];
+  image: string[];
 
   datePublished: string;
 
@@ -33,7 +33,7 @@ export const mkArticleStructuredData: (
     '@type': 'Article',
 
     headline: post.data.title,
-    images: post.data.cover ? [post.data.cover] : [],
+    image: post.data.cover ? [post.data.cover] : [],
 
     datePublished: post.data.createdDate.toISOString(),
 
