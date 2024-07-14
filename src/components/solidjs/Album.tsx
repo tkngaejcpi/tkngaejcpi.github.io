@@ -23,10 +23,12 @@ const Album = (props: Props) => {
   };
 
   return (
-    <div class="pb-2 not-prose flex flex-col gap-2 border-neutral-800">
+    <div class="not-prose flex flex-col gap-2 border-neutral-800 pb-2">
       <img src={currentSlide().src} alt={currentSlide().description} />
 
-      <p class='text-center text-sm italic text-neutral-500'>{currentSlide().description}</p>
+      <p class="text-center text-sm italic text-neutral-500">
+        {currentSlide().description}
+      </p>
 
       <div class="flex flex-row justify-around">
         <button class="text-lg font-bold" onClick={prevSlide}>
