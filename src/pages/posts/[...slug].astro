@@ -33,7 +33,7 @@ const { Content } = await post.render();
         {post.data.title}
       </h1>
 
-      <p class="my-1">
+      <p class="my-1 flex flex-row gap-1">
         {
           post.data.tags.map((tag) => (
             <span class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
