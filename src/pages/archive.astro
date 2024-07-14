@@ -26,7 +26,7 @@ const posts = await getCollection('posts').then((posts) =>
 
     <ul
       class="list-disc px-4"
-      transition:animate={defaultBlogConfig.slideTransition}
+      transition:animate={defaultBlogConfig.transition}
     >
       {
         posts.map((post) => (

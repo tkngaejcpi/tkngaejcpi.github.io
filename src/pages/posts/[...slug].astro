@@ -27,7 +27,7 @@ const { Content } = await post.render();
   description={post.data.description || post.data.title}
   structuredData={mkArticleStructuredData(defaultBlogConfig)(post)}
 >
-  <div class="px-4" transition:animate={defaultBlogConfig.fadeTransition}>
+  <div class="px-4" transition:animate={defaultBlogConfig.transition}>
     <div class="mb-4 border-b-2 border-neutral-400 pb-2 pt-4">
       <h1 class="text-2xl font-bold text-neutral-800">
         {post.data.title}

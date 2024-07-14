@@ -1,4 +1,5 @@
-import { slide, fade } from 'astro:transitions';
+import type { TransitionDirectionalAnimations } from 'astro';
+import { fade } from 'astro:transitions';
 
 export interface BlogConfig {
   site: string;
@@ -12,8 +13,7 @@ export interface BlogConfig {
   dateLocale: Parameters<typeof Date.prototype.toLocaleDateString>[0];
   dateOption: Parameters<typeof Date.prototype.toLocaleDateString>[1];
 
-  slideTransition: ReturnType<typeof slide>;
-  fadeTransition: ReturnType<typeof fade>;
+  transition: TransitionDirectionalAnimations;
 }
 
 export const defaultBlogConfig: BlogConfig = {
@@ -28,6 +28,5 @@ export const defaultBlogConfig: BlogConfig = {
   dateLocale: 'zh-TW',
   dateOption: { year: 'numeric', month: 'long', day: 'numeric' },
 
-  slideTransition: slide({ duration: 150 }),
-  fadeTransition: fade({ duration: 300 }),
+  transition: fade({ duration: 300 }),
 };

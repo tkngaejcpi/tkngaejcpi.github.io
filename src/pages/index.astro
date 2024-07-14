@@ -24,7 +24,7 @@ const posts = await getCollection('posts').then((posts) =>
   <div class="flex flex-col">
     <BlogInfo blogConfig={defaultBlogConfig} navigations={defaultNavigations} />
 
-    <ul class="px-4" transition:animate={defaultBlogConfig.slideTransition}>
+    <ul class="px-4" transition:animate={defaultBlogConfig.transition}>
       {
         posts.map((post) => (
           <li class="border-b-2 border-dashed border-neutral-400 px-1 py-3">
