@@ -1,9 +1,9 @@
 ---
-import BlogInfo from '@components/astro/BlogInfo.astro';
-import Page from '@components/astro/Page.astro';
-
 import { getCollection } from 'astro:content';
 import { slide } from 'astro:transitions';
+
+import BlogInfo from '@components/astro/BlogInfo.astro';
+import Page from '@components/astro/Page.astro';
 
 /* get all posts, to list them in the archive page */
 const posts = await getCollection('posts').then((posts) =>
