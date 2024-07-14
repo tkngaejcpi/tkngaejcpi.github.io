@@ -1,0 +1,39 @@
+---
+import BlogInfo from '@components/astro/BlogInfo.astro';
+import Page from '@components/astro/Page.astro';
+
+import { defaultBlogConfig } from '@models/BlogConfig';
+import { defaultNavigations } from '@models/Navigation';
+---
+
+<Page
+  title={defaultBlogConfig.title}
+  description={defaultBlogConfig.description}
+>
+  <div class="flex flex-col">
+    <BlogInfo blogConfig={defaultBlogConfig} navigations={defaultNavigations} />
+
+    <div
+      class="flex flex-col gap-3 px-5 py-3 text-[0.925rem] font-medium text-neutral-600"
+    >
+      <p>
+        我無法也不希望直接寫一大堆字來告訴你我是怎樣的人，我希望你親自感受這一切。
+      </p>
+
+      <p>以下是除了本站以外我在使用的一些（廣義上的）社交媒體：</p>
+
+      <ul class="list-inside list-disc">
+        <li>
+          Mastodon: <a class="underline" href="https://c7.io/@rileycki"
+            >@rileycki@c7.io</a
+          >
+        </li>
+        <li>
+          GitHub: <a class="underline" href="https://github.com/tkngaejcpi"
+            >@tkngaejcpi</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</Page>
