@@ -24,6 +24,14 @@ const posts = await getCollection('posts').then((posts) =>
               <article>
                 <h2 class="text-lg font-bold">{post.data.title}</h2>
 
+                <p class="mb-1">
+                  {post.data.tags.map((tag) => (
+                    <span class="rounded-md border-2 border-neutral-300 px-1 text-xs font-medium text-neutral-400">
+                      #{tag}
+                    </span>
+                  ))}
+                </p>
+
                 <p class="mb-1 text-xs text-neutral-400">
                   {post.data.createdDate.toLocaleDateString()}
                 </p>

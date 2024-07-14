@@ -18,20 +18,30 @@ const posts = await getCollection('posts').then((posts) =>
     <BlogInfo />
 
     <ul
-      class="px-4"
+      class="list-disc px-4"
       transition:animate={slide({
         duration: 150,
       })}
     >
       {
         posts.map((post) => (
-          <li class="px-1 pb-1 pt-3">
-            <a href={`/posts/${post.slug}`}>
-              <span class="mr-1 font-bold italic">*</span>
-              <span class="font-medium">{post.data.title}</span>
-              <span class="float-end mr-1 text-sm text-neutral-400">
-                {post.data.createdDate.toLocaleDateString()}
-              </span>
+          <li class="ml-5 px-1 pt-3">
+            <a class="flex flex-col gap-1" href={`/posts/${post.slug}`}>
+              <span class="font-bold">{post.data.title}</span>
+
+              <div class="flex flex-row place-items-center gap-2">
+                <span>
+                  {post.data.tags.map((tag) => (
+                    <span class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
+                      #{tag}
+                    </span>
+                  ))}
+                </span>
+
+                <span class="text-sm font-medium text-neutral-400">
+                  {post.data.createdDate.toLocaleDateString()}
+                </span>
+              </div>
             </a>
           </li>
         ))
