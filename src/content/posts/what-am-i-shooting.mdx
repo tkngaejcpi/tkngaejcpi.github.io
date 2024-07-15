@@ -6,7 +6,7 @@ tags: ['攝影', '想法']
 description: '「你是拍什麼的？」「我拍照記錄生活和創作作品。」'
 ---
 
-import Album from '@components/solidjs/Album.tsx';
+import Album from '@components/astro/Album.astro';
 
 ### 引子
 
@@ -29,7 +29,6 @@ import Album from '@components/solidjs/Album.tsx';
 比如說，上週五我出去喝酒了，拍下了一組照片：
 
 <Album
-  client:load
   slides={[
     {
       src: 'https://images.rileycki.com/20240704.webp',
@@ -49,7 +48,6 @@ import Album from '@components/solidjs/Album.tsx';
 我平時在路上就喜歡拍路過的小貓，每次碰見它們我都會覺得生活多了一些盼頭：
 
 <Album
-  client:load
   slides={[
     {
       src: 'https://images.rileycki.com/20240707.webp',
@@ -79,7 +77,6 @@ import Album from '@components/solidjs/Album.tsx';
 比如說，這張照片：
 
 <Album
-  client:load
   slides={[
     {
       src: 'https://images.rileycki.com/20240703.webp',
@@ -94,7 +91,6 @@ import Album from '@components/solidjs/Album.tsx';
 而後者，在字面上就有些不知所云，大概就是我覺得現在很多照片都在通過淺景深、消失點等視覺效果刻意地引導我們，我希望主動地消除這些引導，讓觀賞者更主動地去「看」照片：
 
 <Album
-  client:load
   slides={[
     {
       src: 'https://images.rileycki.com/20240701.webp',

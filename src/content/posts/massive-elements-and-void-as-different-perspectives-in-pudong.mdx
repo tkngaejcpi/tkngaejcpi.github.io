@@ -6,12 +6,11 @@ tags: ['攝影']
 description: '浦東總有一種充斥著巨量元素，但又空蕩蕩的感覺。'
 ---
 
+import Album from '@components/astro/Album.astro';
+
 浦東總有一種充斥著巨量元素，但又空蕩蕩的感覺。
 
-import Album from '@components/solidjs/Album.tsx';
-
 <Album
-  client:load
   slides={[
     {
       src: 'https://images.rileycki.com/20240701.webp',

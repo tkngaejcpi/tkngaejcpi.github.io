@@ -1,0 +1,16 @@
+---
+import SolidJSAlbum from '@components/solidjs/Album';
+
+interface Slide {
+  src: string;
+  description?: string;
+}
+
+interface Props {
+  slides: Slide[];
+}
+
+const { slides } = Astro.props;
+---
+
+<SolidJSAlbum slides={slides} client:load />
