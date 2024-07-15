@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 
+import GiscusComments from '@components/astro/GiscusComments.astro';
 import Page from '@components/astro/Page.astro';
 
 import { defaultBlogConfig } from '@models/BlogConfig';
@@ -53,25 +54,8 @@ const { Content } = await post.render();
     </article>
 
     <!-- giscus -->
-    <div
-      class="mt-2 border-t-2 border-dashed border-neutral-400 pt-5 text-center text-sm font-medium italic text-neutral-600"
-    >
-      <script
-        src="https://giscus.app/client.js"
-        data-repo="tkngaejcpi/tkngaejcpi.github.io"
-        data-repo-id="R_kgDOMKKtsg"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOMKKtss4CgyEV"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="zh-TW"
-        crossorigin="anonymous"
-        async
-        is:inline></script>
+    <div class="mt-2 border-t-2 border-dashed border-neutral-400 pt-5">
+      <GiscusComments />
     </div>
   </div>
 </Page>
