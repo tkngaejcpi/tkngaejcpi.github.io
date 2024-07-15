@@ -11,6 +11,7 @@ interface Props {
 }
 
 const { title, description, structuredData }: Props = Astro.props;
+const hasStructuredData = !(structuredData === undefined);
 ---
 
 <html lang="zh">
@@ -24,15 +25,24 @@ const { title, description, structuredData }: Props = Astro.props;
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- external verifications -->
+    <!-- external relme auth -->
     <link rel="me" href="https://c7.io/@rileycki" />
+
+    <!-- set og: data -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {
+      hasStructuredData ? (
+        <meta property="og:image" content={structuredData!.image[0]} />
+      ) : null
+    }
 
     <!--
       a little hack to set structured data,
       see https://github.com/withastro/astro/issues/3544
     -->
     {
-      structuredData ? (
+      hasStructuredData ? (
         <script
           type="application/ld+json"
           set:html={JSON.stringify(structuredData)}
