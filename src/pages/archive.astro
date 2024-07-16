@@ -33,14 +33,14 @@ const posts = await getCollection('posts').then((posts) =>
                   <S.HorizontalView.SmallGap>
                     {post.data.tags.map((tag) => (
                       <S.RoundedContainer>
-                        <S.GrayerSubText.Block>#{tag}</S.GrayerSubText.Block>
+                        <S.SupportingText.Block>#{tag}</S.SupportingText.Block>
                       </S.RoundedContainer>
                     ))}
                   </S.HorizontalView.SmallGap>
 
-                  <S.GrayerSubText._>
+                  <S.SupportingText._>
                     {mkLocaleDateString(blogConfig)(post.data.createdDate)}
-                  </S.GrayerSubText._>
+                  </S.SupportingText._>
                 </S.HorizontalView._>
               </S.VerticalView.SmallGap>
             </a>

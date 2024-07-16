@@ -69,6 +69,7 @@ const S = {
   HorizontalView: deriveViewComponent('row'),
 
   MainText: deriveTextComponent('text-lg font-bold text-neutral-900'),
+  NormalText: deriveTextComponent('font-medium text-neutral-900'),
   SubText: deriveTextComponent('text-sm font-medium text-neutral-600'),
   GrayerSubText: deriveTextComponent('text-sm font-medium text-neutral-400'),
   SupportingText: deriveTextComponent('text-xs text-neutral-400'),
@@ -79,9 +80,13 @@ const S = {
 
   MarkdownContainer,
 
+  /* adhoc styled components */
   BlogTitle,
   PostTitle,
   PostSummaryText,
+  AboutMeText: deriveTextComponent(
+    'text-[0.925rem] font-medium text-neutral-700',
+  ),
 };
 
 export default S;

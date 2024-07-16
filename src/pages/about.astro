@@ -1,35 +1,40 @@
 ---
 import BlogInfo from '@components/BlogInfo.astro';
 import Page from '@components/Page.astro';
+import S from '@components/Style';
 
 import { blogConfig } from '@config/blog';
 ---
 
 <Page title={blogConfig.title} description={blogConfig.description}>
-  <div class="flex flex-col">
+  <S.VerticalView.NoGap>
     <BlogInfo />
 
-    <div
-      class="flex flex-col gap-3 px-5 py-3 text-[0.925rem] font-medium text-neutral-600"
-    >
-      <p>
+    <S.VerticalView.NoGap class="gap-3 px-5 py-3">
+      <S.AboutMeText.Para>
         我無法也不希望直接寫一大堆字來告訴你我是怎樣的人，我希望你親自感受這一切。
-      </p>
+      </S.AboutMeText.Para>
 
-      <p>以下是除了本站以外我在使用的一些（廣義上的）社交媒體：</p>
+      <S.AboutMeText.Para
+        >以下是除了本站以外我在使用的一些（廣義上的）社交媒體：</S.AboutMeText.Para
+      >
 
       <ul class="list-inside list-disc">
         <li>
-          Mastodon: <a class="underline" href="https://c7.io/@rileycki"
-            >@rileycki@c7.io</a
+          <S.AboutMeText._
+            >Mastodon: <a class="underline" href="https://c7.io/@rileycki"
+              >@rileycki@c7.io</a
+            ></S.AboutMeText._
           >
         </li>
         <li>
-          GitHub: <a class="underline" href="https://github.com/tkngaejcpi"
-            >@tkngaejcpi</a
-          >
+          <S.AboutMeText._
+            >GitHub: <a class="underline" href="https://github.com/tkngaejcpi"
+              >@tkngaejcpi</a
+            >
+          </S.AboutMeText._>
         </li>
       </ul>
-    </div>
-  </div>
+    </S.VerticalView.NoGap>
+  </S.VerticalView.NoGap>
 </Page>
