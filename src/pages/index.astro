@@ -4,8 +4,7 @@ import { getCollection } from 'astro:content';
 import BlogInfo from '@components/astro/BlogInfo.astro';
 import Page from '@components/astro/Page.astro';
 
-import { defaultBlogConfig } from '@models/BlogConfig';
-import { defaultNavigations } from '@models/Navigation';
+import { blogConfig } from '@config/blog';
 
 import { mkLocaleDateString } from '@utils/date';
 
@@ -17,14 +16,11 @@ const posts = await getCollection('posts').then((posts) =>
 );
 ---
 
-<Page
-  title={defaultBlogConfig.title}
-  description={defaultBlogConfig.description}
->
+<Page title={blogConfig.title} description={blogConfig.description}>
   <div class="flex flex-col">
-    <BlogInfo blogConfig={defaultBlogConfig} navigations={defaultNavigations} />
+    <BlogInfo />
 
-    <ul class="px-4" transition:animate={defaultBlogConfig.transition}>
+    <ul class="px-4" transition:animate={blogConfig.transition}>
       {
         posts.map((post) => (
           <li class="border-b-2 border-dashed border-neutral-400 px-1 py-3">
@@ -41,7 +37,7 @@ const posts = await getCollection('posts').then((posts) =>
                 </p>
 
                 <p class="mb-1 text-xs text-neutral-400">
-                  {mkLocaleDateString(defaultBlogConfig)(post.data.createdDate)}
+                  {mkLocaleDateString(blogConfig)(post.data.createdDate)}
                 </p>
 
                 {post.data.cover ? (

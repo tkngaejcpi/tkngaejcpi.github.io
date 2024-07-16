@@ -31,6 +31,7 @@ const config = {
 
     /* for simple source */
     '^@components/.+$',
+    '^@config/.+$',
     '^@models/.+$',
     '^@utils/.+$',
     '^[./]',

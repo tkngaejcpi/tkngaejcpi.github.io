@@ -2,16 +2,12 @@
 import BlogInfo from '@components/astro/BlogInfo.astro';
 import Page from '@components/astro/Page.astro';
 
-import { defaultBlogConfig } from '@models/BlogConfig';
-import { defaultNavigations } from '@models/Navigation';
+import { blogConfig } from '@config/blog';
 ---
 
-<Page
-  title={defaultBlogConfig.title}
-  description={defaultBlogConfig.description}
->
+<Page title={blogConfig.title} description={blogConfig.description}>
   <div class="flex flex-col">
-    <BlogInfo blogConfig={defaultBlogConfig} navigations={defaultNavigations} />
+    <BlogInfo />
 
     <div
       class="flex flex-col gap-3 px-5 py-3 text-[0.925rem] font-medium text-neutral-600"

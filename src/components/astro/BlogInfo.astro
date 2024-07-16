@@ -1,14 +1,19 @@
 ---
-import type { BlogConfig } from '@models/BlogConfig';
-import type { Navigation } from '@models/Navigation';
+import { blogConfig } from '@config/blog';
 
 /* props */
-interface Props {
-  blogConfig: BlogConfig;
-  navigations: Navigation[];
+interface Navigation {
+  emoji: string;
+  description: string;
+  location: string;
 }
 
-const { blogConfig, navigations } = Astro.props;
+const navigations: Navigation[] = [
+  { emoji: '🏡', description: '主頁', location: '/' },
+  { emoji: '🗃️', description: '歸檔', location: '/archive' },
+  { emoji: '🤖', description: '關於我', location: '/about' },
+  { emoji: '📡', description: 'RSS', location: '/rss.xml' },
+];
 ---
 
 <div

@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 import GiscusComments from '@components/astro/GiscusComments.astro';
 import Page from '@components/astro/Page.astro';
 
-import { defaultBlogConfig } from '@models/BlogConfig';
+import { blogConfig } from '@config/blog';
 import { mkArticleStructuredData } from '@models/StructuredData';
 
 import { mkLocaleDateString } from '@utils/date';
@@ -26,9 +26,9 @@ const { Content } = await post.render();
 <Page
   title={post.data.title}
   description={post.data.description || post.data.title}
-  structuredData={mkArticleStructuredData(defaultBlogConfig)(post)}
+  structuredData={mkArticleStructuredData(blogConfig)(post)}
 >
-  <div class="px-4" transition:animate={defaultBlogConfig.transition}>
+  <div class="px-4" transition:animate={blogConfig.transition}>
     <div class="mb-4 border-b-2 border-neutral-400 pb-2 pt-4">
       <h1 class="text-2xl font-bold text-neutral-800">
         {post.data.title}
@@ -45,7 +45,7 @@ const { Content } = await post.render();
       </p>
 
       <p class="mt-1 text-neutral-400">
-        {mkLocaleDateString(defaultBlogConfig)(post.data.createdDate)}
+        {mkLocaleDateString(blogConfig)(post.data.createdDate)}
       </p>
     </div>
 
