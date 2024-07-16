@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 
 import GiscusComments from '@components/GiscusComments.astro';
 import Page from '@components/Page.astro';
+import S from '@components/Style';
 
 import { blogConfig } from '@config/blog';
 import { mkArticleStructuredData } from '@models/StructuredData';
@@ -29,33 +30,33 @@ const { Content } = await post.render();
   structuredData={mkArticleStructuredData(blogConfig)(post)}
 >
   <div class="px-4" transition:animate={blogConfig.transition}>
-    <div class="mb-4 border-b-2 border-neutral-400 pb-2 pt-4">
-      <h1 class="text-2xl font-bold text-neutral-800">
+    <S.BottomBorderContainer class="mb-4 pb-2 pt-4">
+      <S.PostTitle>
         {post.data.title}
-      </h1>
+      </S.PostTitle>
 
-      <p class="my-1 flex flex-row gap-1">
+      <S.HorizontalView.SmallGap class="my-1">
         {
           post.data.tags.map((tag) => (
-            <span class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
-              #{tag}
-            </span>
+            <S.RoundedContainer class="px-1">
+              <S.GrayerSubText.Block>#{tag}</S.GrayerSubText.Block>
+            </S.RoundedContainer>
           ))
         }
-      </p>
+      </S.HorizontalView.SmallGap>
 
-      <p class="mt-1 text-neutral-400">
+      <S.GrayerSubText.Block>
         {mkLocaleDateString(blogConfig)(post.data.createdDate)}
-      </p>
-    </div>
+      </S.GrayerSubText.Block>
+    </S.BottomBorderContainer>
 
-    <article class="prose prose-neutral overflow-y-scroll">
+    <S.MarkdownContainer>
       <Content />
-    </article>
+    </S.MarkdownContainer>
 
     <!-- giscus -->
-    <div class="mb-4 mt-4 border-t-2 border-dashed border-neutral-400 pt-6">
+    <S.TopBorderContainer class="mb-4 mt-4 border-dashed pt-6">
       <GiscusComments />
-    </div>
+    </S.TopBorderContainer>
   </div>
 </Page>

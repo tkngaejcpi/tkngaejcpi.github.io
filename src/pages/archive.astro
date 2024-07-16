@@ -3,9 +3,9 @@ import { getCollection } from 'astro:content';
 
 import BlogInfo from '@components/BlogInfo.astro';
 import Page from '@components/Page.astro';
+import S from '@components/Style';
 
-import { defaultBlogConfig } from '@models/BlogConfig';
-import { defaultNavigations } from '@models/Navigation';
+import { blogConfig } from '@config/blog';
 
 import { mkLocaleDateString } from '@utils/date';
 
@@ -17,40 +17,36 @@ const posts = await getCollection('posts').then((posts) =>
 );
 ---
 
-<Page
-  title={defaultBlogConfig.title}
-  description={defaultBlogConfig.description}
->
-  <div class="flex flex-col text-neutral-800">
-    <BlogInfo blogConfig={defaultBlogConfig} navigations={defaultNavigations} />
+<Page title={blogConfig.title} description={blogConfig.description}>
+  <S.VerticalView.NoGap>
+    <BlogInfo blogConfig={blogConfig} />
 
-    <ul
-      class="list-disc px-4"
-      transition:animate={defaultBlogConfig.transition}
-    >
+    <ul class="list-disc px-4" transition:animate={blogConfig.transition}>
       {
         posts.map((post) => (
           <li class="ml-5 px-1 pt-3">
-            <a class="flex flex-col gap-1" href={`/posts/${post.slug}`}>
-              <span class="font-bold">{post.data.title}</span>
+            <a class="block" href={`/posts/${post.slug}`}>
+              <S.VerticalView.SmallGap>
+                <S.MainText._>{post.data.title}</S.MainText._>
 
-              <div class="flex flex-row place-items-center gap-2">
-                <span class="flex flex-row gap-1">
-                  {post.data.tags.map((tag) => (
-                    <span class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
-                      #{tag}
-                    </span>
-                  ))}
-                </span>
+                <S.HorizontalView._ class="place-items-center">
+                  <S.HorizontalView.SmallGap>
+                    {post.data.tags.map((tag) => (
+                      <S.RoundedContainer>
+                        <S.GrayerSubText.Block>#{tag}</S.GrayerSubText.Block>
+                      </S.RoundedContainer>
+                    ))}
+                  </S.HorizontalView.SmallGap>
 
-                <span class="text-sm font-medium text-neutral-400">
-                  {mkLocaleDateString(defaultBlogConfig)(post.data.createdDate)}
-                </span>
-              </div>
+                  <S.GrayerSubText._>
+                    {mkLocaleDateString(blogConfig)(post.data.createdDate)}
+                  </S.GrayerSubText._>
+                </S.HorizontalView._>
+              </S.VerticalView.SmallGap>
             </a>
           </li>
         ))
       }
     </ul>
-  </div>
+  </S.VerticalView.NoGap>
 </Page>

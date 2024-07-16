@@ -1,4 +1,6 @@
 ---
+import S from '@components/Style';
+
 import { blogConfig } from '@config/blog';
 
 /* props */
@@ -16,31 +18,29 @@ const navigations: Navigation[] = [
 ];
 ---
 
-<div
-  class="mx-4 flex flex-col items-center gap-2 border-b-2 border-neutral-400 pb-4 pt-8 text-neutral-800"
->
-  <h1 class="text-3xl font-bold">{blogConfig.title}</h1>
+<S.BottomBorderContainer class="mx-4 pb-4 pt-8">
+  <S.VerticalView._ class="items-center">
+    <S.BlogTitle>{blogConfig.title}</S.BlogTitle>
 
-  <div>
-    {
-      blogConfig.subtitleLines.map((subtitleLine) => (
-        <p class="text-center text-sm font-medium text-neutral-600">
-          {subtitleLine}
-        </p>
-      ))
-    }
-  </div>
+    <div>
+      {
+        blogConfig.subtitleLines.map((subtitleLine) => (
+          <S.SubText.Para class="text-center">{subtitleLine}</S.SubText.Para>
+        ))
+      }
+    </div>
 
-  <ul class="flex flex-row gap-4">
-    {
-      navigations.map((navigation) => (
-        <li class="text-sm font-medium text-neutral-600">
+    <S.HorizontalView.NoGap class="gap-4">
+      {
+        navigations.map((navigation) => (
           <a href={navigation.location}>
-            <span>{navigation.emoji}</span>
-            <span class="underline">{navigation.description}</span>
+            <S.SubText._>{navigation.emoji}</S.SubText._>
+            <S.SubText._ class="underline">
+              {navigation.description}
+            </S.SubText._>
           </a>
-        </li>
-      ))
-    }
-  </ul>
-</div>
+        ))
+      }
+    </S.HorizontalView.NoGap>
+  </S.VerticalView._>
+</S.BottomBorderContainer>
