@@ -1,5 +1,5 @@
 ---
-import SolidJSAlbum from '@components/solidjs/Album';
+import Album_ from '@components/Album_';
 
 interface Slide {
   src: string;
@@ -13,4 +13,4 @@ interface Props {
 const { slides } = Astro.props;
 ---
 
-<SolidJSAlbum slides={slides} client:load />
+<Album_ slides={slides} client:load />
