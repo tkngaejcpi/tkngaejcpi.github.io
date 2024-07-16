@@ -1,0 +1,79 @@
+---
+title: '長毛象、獨立網站和 Webmention'
+cover: 'https://images.rileycki.com/20240710.webp'
+createdDate: 2024-07-17
+tags: ['想法', '安利']
+description: '「如何能建立起獨立網站間的聯繫呢？」「快使用 Webmention。」'
+---
+
+import Album from '@components/Album.astro';
+
+### 從長毛象說起
+
+每一次在長毛象（Mastondon）上面發文，別人給我點星、轉嘟和回覆，都會讓我真切地感受到：「誒，我發的胡言亂語居然真的有人在看」，這種的社群參與感是我一直愛玩毛象的原因。
+
+能形成這樣的毛象，正因長毛象的大家都是在不同的服務器上以服務器爲單位聚集在一起的，每個人都可以根據自己的喜歡選擇不同的服務器。我們每一個人雖然身處在不同的圈子，但卻可以彼此交流。
+
+![Mastodon](https://images.rileycki.com/20240709.svg)
+
+聯邦式的運營運營雖然造就了毛象這一特點，但也正因爲群居的特性，我們被侷限了一些自由——比如說我不可能給毛象加 Markdown 的功能，除非這個毛象的服務器是我自建的（事實上，即使是自己的服務器一直維護的成本也不可忽視的）。
+
+### 獨立網站
+
+作爲補充，我覺得作爲創作者擁有一個獨立網站很重要，這可以不讓一些固有的形式束縛你要表達的內容。
+
+比如說，我覺得 Astro 默認的 Markdown 渲染，在放組圖的時候就不太好用，幾張圖片便滿滿當當塞滿整頁。於是，我就寫了一個相冊小組件來放組圖，就像這樣：
+
+<Album
+  slides={[
+    {
+      src: 'https://images.rileycki.com/20240704.webp',
+      description: '好喝的打嗝海狸花生醬世濤',
+    },
+    {
+      src: 'https://images.rileycki.com/20240705.webp',
+      description: '碰到「你很可愛」的標語',
+    },
+    {
+      src: 'https://images.rileycki.com/20240706.webp',
+      description: '偶遇朋友，去它的店喝了一瓶西海岸 IPA',
+    },
+  ]}
+/>
+
+不過，獨立網站獲得了自主性的同時，與社群的接觸也減少了。那麼，有沒有什麼辦法解決呢？
+
+### Webmention
+
+感謝看到 <a class="u-like-of" href="https://jason-memo.dev/posts/webmention/">透過 webmention 來搜集 blog 的社群迴響</a> 這篇文了解到 [Webmention](https://en.wikipedia.org/wiki/Webmention)。
+
+Webmention 是一個 W3C 推薦標準，它的理念大概就是，讓你知道互聯網上面有哪裏提到了你的網站。
+
+以 [webmention.io](https://webmention.io) 的實現爲例，Webmention 的流程大概是這樣的：
+
+1. 有一個人在自己的網頁 A 提到了你的一個網頁 B
+2. 它（可能是透過你網頁下的表單）向 webmention.io 提交了這個網址
+3. webmention.io 檢查 A 是不是真的提到了 B
+4. webmention.io 通知網頁 B 的擁有者（你）
+
+你可以拿 webmention.io 的 API 獲取相應的數據，或做成評論區，或者只是做個計數器，全由你決定！
+
+不過，從上面的流程可以看出來，這要求提到你的人必須也擁有一個網站，這對於只是想隨手評論一下的人來說，是個很頭痛的問題。
+
+還好，除了傳統的觸發，我們還可以通過 [brid.gy](https://brid.gy) 來掃描 Twitter、毛象的社群接觸，讓它來代理上面的通知。
+
+直到現在，你應該會發現——大部分時候，我們需要用 Webmention 實現的，其實跟很多第三方評論區，像 Disqus、Giscus 要做的也差不多，所以說，這其實完全是意識形態之爭——***沒錯，這就是意識形態之爭，就像長毛象和推特，Blogger 和獨立博客，私有軟件和自由軟件。使用 Webmention 是爲了可以在自己站內保留數據，且不遊離於世界之外。***
+
+### 現狀
+
+在這篇文章發出來的時候，我還沒在站內完全完成 Webmention 的實現，大概只在文章部分加入了一些 microformat 信息，供第三方程序抓取。
+
+不過在可見的將來我應該會完成我需要的功能，到時候應該會再出一片技術文的！
+
+### 版權資料
+
+本文將以 [GNU Affero General Public License 3.0](https://www.gnu.org/licenses/agpl-3.0.en.html) 授權條款開放[源代碼](http://github.com/tkngaejcpi/tkngaejcpi.github.io)。
+
+其中，本文中的[此 SVG 圖](https://images.rileycki.com/20240709.svg)是以 [GNU Affero General Public License 3.0](https://www.gnu.org/licenses/agpl-3.0.en.html) 授權重新分發的。
+
+***請注意，這不表示本站的其他圖片將允許以此種方式重新分發。***
