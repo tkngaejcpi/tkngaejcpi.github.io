@@ -29,11 +29,11 @@ function WebMention({ url }: Props) {
   });
 
   return (
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-4">
       <h2 class="text-xl font-bold">來自 Webmention 的回應</h2>
 
-      <div class="mb-1">
-        <p class="mb-2 font-medium">
+      <div>
+        <p class="mb-2 text-lg font-medium">
           <span class="mr-1">⭐</span>
           <span class="underline">讚好</span>
         </p>
@@ -54,7 +54,7 @@ function WebMention({ url }: Props) {
       </div>
 
       <div>
-        <p class="mb-2 flex flex-row font-medium">
+        <p class="mb-2 flex flex-row text-lg font-medium">
           <span class="mr-1">🔁</span>
           <span class="underline">轉發</span>
         </p>
