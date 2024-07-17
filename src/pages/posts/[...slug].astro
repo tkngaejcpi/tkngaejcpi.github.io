@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 
-import GiscusComments from '@components/GiscusComments.astro';
+import WebMention from '@components/WebMention.astro';
 import Page from '@components/Page.astro';
 import S from '@components/Style';
 
@@ -71,9 +71,8 @@ const { Content } = await post.render();
       <Content />
     </S.MarkdownContainer>
 
-    <!-- giscus -->
-    <S.TopBorderContainer class="mb-4 mt-4 border-dashed pt-6">
-      <GiscusComments />
-    </S.TopBorderContainer>
+    <div class="mb-4 mt-4 border-t-2 border-dashed border-neutral-400 pt-4">
+      <WebMention url={`https://blog.rileycki.com/posts/${post.slug}/`} />
+    </div>
   </div>
 </Page>

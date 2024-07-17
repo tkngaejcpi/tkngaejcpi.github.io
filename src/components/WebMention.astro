@@ -1,0 +1,11 @@
+---
+import WebMention_ from '@components/WebMention_';
+
+interface Props {
+  url: string;
+}
+
+const { url } = Astro.props;
+---
+
+<WebMention_ url={url} client:load />
