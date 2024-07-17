@@ -3,7 +3,6 @@ import { getCollection } from 'astro:content';
 
 import BlogInfo from '@components/BlogInfo.astro';
 import Page from '@components/Page.astro';
-import S from '@components/Style';
 
 import { blogConfig } from '@config/blog';
 
@@ -18,35 +17,39 @@ const posts = await getCollection('posts').then((posts) =>
 ---
 
 <Page title={blogConfig.title} description={blogConfig.description}>
-  <S.VerticalView.NoGap>
-    <BlogInfo blogConfig={blogConfig} />
+  <div class="flex flex-col">
+    <div class="mx-4">
+      <BlogInfo />
+    </div>
 
     <ul class="list-disc px-4" transition:animate={blogConfig.transition}>
       {
         posts.map((post) => (
           <li class="ml-5 px-1 pt-3">
             <a class="block" href={`/posts/${post.slug}`}>
-              <S.VerticalView.SmallGap>
-                <S.MainText._>{post.data.title}</S.MainText._>
+              <div class="flex flex-col gap-1">
+                <span class="text-lg font-bold text-neutral-900">
+                  {post.data.title}
+                </span>
 
-                <S.HorizontalView._ class="place-items-center">
-                  <S.HorizontalView.SmallGap>
+                <div class="flex flex-row place-items-center gap-1">
+                  <div class="flex flex-row gap-1">
                     {post.data.tags.map((tag) => (
-                      <S.RoundedContainer>
-                        <S.SupportingText.Block>#{tag}</S.SupportingText.Block>
-                      </S.RoundedContainer>
+                      <span class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
+                        #{tag}
+                      </span>
                     ))}
-                  </S.HorizontalView.SmallGap>
+                  </div>
 
-                  <S.SupportingText._>
+                  <span class="text-sm font-medium text-neutral-400">
                     {mkLocaleDateString(blogConfig)(post.data.createdDate)}
-                  </S.SupportingText._>
-                </S.HorizontalView._>
-              </S.VerticalView.SmallGap>
+                  </span>
+                </div>
+              </div>
             </a>
           </li>
         ))
       }
     </ul>
-  </S.VerticalView.NoGap>
+  </div>
 </Page>

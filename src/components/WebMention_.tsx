@@ -13,6 +13,7 @@ interface Props {
   url: string;
 }
 
+// TODO: reply
 function WebMention({ url }: Props) {
   const [mentions, setMentions] = createSignal<Mention[]>([]);
 
