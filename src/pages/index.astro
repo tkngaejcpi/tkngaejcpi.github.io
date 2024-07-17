@@ -36,7 +36,7 @@ const posts = await getCollection('posts').then((posts) =>
 
               <div class="mb-1 flex flex-row gap-1">
                 {post.data.tags.map((tag) => (
-                  <div class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
+                  <div class="rounded-md border-2 border-neutral-400 px-1 text-sm font-medium text-neutral-400">
                     #{tag}
                   </div>
                 ))}
