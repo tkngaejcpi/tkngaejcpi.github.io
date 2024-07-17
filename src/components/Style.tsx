@@ -4,11 +4,11 @@ import { pipe, preHook } from '@utils/function';
 import { mergeTailwindClass, mkComponent } from '@utils/style';
 
 /* styled component pipeline */
-function mkStyledComponent(
-  tag: keyof JSX.HTMLElementTags,
+function mkStyledComponent<T extends keyof JSX.HTMLElementTags>(
+  tag: T,
   twClass: string,
-): Component<ComponentProps<typeof tag>> {
-  return function (props) {
+): Component<ComponentProps<T>> {
+  return function (props: ComponentProps<T>) {
     return pipe(props, mergeTailwindClass(twClass), mkComponent(tag));
   };
 }
@@ -19,8 +19,8 @@ function deriveViewComponent(direction: 'row' | 'col') {
   return {
     NoGap,
 
-    _: preHook(mergeTailwindClass('gap-2'))(NoGap),
-    SmallGap: preHook(mergeTailwindClass('gap-1'))(NoGap),
+    _: preHook(mergeTailwindClass('gap-2'))(NoGap) as typeof NoGap,
+    SmallGap: preHook(mergeTailwindClass('gap-1'))(NoGap) as typeof NoGap,
   };
 }
 

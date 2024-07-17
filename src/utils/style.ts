@@ -8,11 +8,11 @@ export type PropsOperator<T extends keyof JSX.HTMLElementTags> = Operator<
 >;
 
 /**
- * @description takes tailwind class, return a PropsOperator that merge the tailwind class
+ * @description takes tailwind class, return a Operator that merging tailwind class
  */
-export function mergeTailwindClass<T extends keyof JSX.HTMLElementTags>(
+export function mergeTailwindClass<T extends { class?: string }>(
   twClass: string,
-): PropsOperator<T> {
+): Operator<T> {
   return function (props) {
     /* merge tw class to original class if needed */
     const mergedClass =
