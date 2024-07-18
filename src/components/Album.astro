@@ -13,4 +13,4 @@ interface Props {
 const { slides } = Astro.props;
 ---
 
-<Album_ slides={slides} client:load />
+<Album_ slides={slides} client:only="react" />

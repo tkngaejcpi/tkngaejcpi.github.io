@@ -8,4 +8,4 @@ interface Props {
 const { url } = Astro.props;
 ---
 
-<WebMention_ url={url} client:load />
+<WebMention_ url={url} client:only="react" />
