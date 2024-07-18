@@ -17,8 +17,8 @@ function AvatarBoard({ emoji, label, mentions }: AvatarBoardProps) {
       </p>
 
       <div className="flex flex-row gap-2">
-        {mentions.map((mention) => (
-          <a href={mention.author.url}>
+        {mentions.map((mention, i) => (
+          <a key={i} href={mention.author.url}>
             <img
               height="32px"
               width="32px"
@@ -73,8 +73,8 @@ function WebMention({ url }: WebMentionProps) {
         </p>
 
         <div className="flex flex-col gap-2 pt-1">
-          {replies.map((reply) => (
-            <div className="flex flex-col gap-3">
+          {replies.map((reply, i) => (
+            <div key={i} className="flex flex-col gap-3">
               <a className="flex flex-row gap-2" href={reply.author.url}>
                 <img
                   className="h-6 w-6"

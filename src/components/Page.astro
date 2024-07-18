@@ -39,9 +39,9 @@ const hasStructuredData = !(structuredData === undefined);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {
-      hasStructuredData ? (
+      hasStructuredData && (
         <meta property="og:image" content={structuredData!.image[0]} />
-      ) : null
+      )
     }
 
     <!--
@@ -49,13 +49,13 @@ const hasStructuredData = !(structuredData === undefined);
       see https://github.com/withastro/astro/issues/3544
     -->
     {
-      hasStructuredData ? (
+      hasStructuredData && (
         <script
           type="application/ld+json"
           set:html={JSON.stringify(structuredData)}
           is:inline
         />
-      ) : null
+      )
     }
 
     <ViewTransitions />
