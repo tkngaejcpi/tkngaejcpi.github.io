@@ -11,27 +11,39 @@ import { blogConfig } from '@config/blog';
       <BlogInfo />
     </div>
 
-    <div
-      class="flex flex-col gap-3 px-6 py-3 text-[0.925rem] font-medium text-neutral-700"
-    >
-      <p>
-        我無法也不希望直接寫一大堆字來告訴你我是怎樣的人，我希望你親自感受這一切。
-      </p>
+    <div class="prose px-6 py-4">
+      <h3>我</h3>
 
-      <p>以下是除了本站以外我在使用的一些（廣義上的）社交媒體：</p>
-
-      <ul class="list-inside list-disc">
+      <ul>
         <li>
-          Mastodon: <a class="underline" href="https://c7.io/@rileycki"
-            >@rileycki@c7.io</a
-          >
+          Mastodon: <a href="https://c7.io/@rileycki">@rileycki@c7.io</a>
         </li>
         <li>
-          GitHub: <a class="underline" href="https://github.com/tkngaejcpi"
-            >@tkngaejcpi</a
-          >
+          GitHub: <a href="https://github.com/tkngaejcpi">@tkngaejcpi</a>
         </li>
       </ul>
+
+      <p>多說無妨，逛逛本站感受下我怎麼樣吧。</p>
+
+      <h3>本站</h3>
+
+      <p>
+        本站提供了 <a href="/rss.xml">RSS</a
+        >，你可以通過它來訂閱更新，不過由於沒有辦法展現一些特殊的樣式，所以 RSS
+        沒有提供全文輸出，暫且把它當成通知吧！
+      </p>
+
+      <p>
+        同時，你可以使用 Webmention
+        來跟我的文章互動，具體的方法就是你在自己的網站上公開一個含有 microformat
+        資料的網頁，然後通過文章下面的表單提交通知，你的回應就會被同步到文章下面。
+      </p>
+
+      <p>
+        如果你沒有自己的網站，最簡單的方法就是跟我<a
+          href="https://c7.io/@rileycki">長毛象</a
+        >上對應的轉發互動，你的公開的點星、轉發和評論也會同步到文章下面。
+      </p>
     </div>
   </div>
 </Page>
