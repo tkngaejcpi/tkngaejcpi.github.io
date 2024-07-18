@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js';
+import { useState } from 'react';
 
 interface Slide {
   src: string;
@@ -12,8 +12,8 @@ interface Props {
 const Album = (props: Props) => {
   const { slides: images } = props;
 
-  const [index, setIndex] = createSignal(0);
-  const currentSlide = () => images[index()];
+  const [index, setIndex] = useState(0);
+  const currentSlide = images[index];
 
   const prevSlide = () => {
     setIndex((i) => (i > 0 ? i - 1 : images.length - 1));
@@ -23,21 +23,21 @@ const Album = (props: Props) => {
   };
 
   return (
-    <div class="not-prose flex flex-col gap-2 border-neutral-800 pb-2">
-      <img src={currentSlide().src} alt={currentSlide().description} />
+    <div className="not-prose flex flex-col gap-2 border-neutral-800 pb-2">
+      <img src={currentSlide.src} alt={currentSlide.description} />
 
-      <p class="text-center text-sm italic text-neutral-500">
-        {currentSlide().description}
+      <p className="text-center text-sm italic text-neutral-500">
+        {currentSlide.description}
       </p>
 
-      <div class="flex flex-row justify-around">
-        <button class="text-lg font-bold" onClick={prevSlide}>
+      <div className="flex flex-row justify-around">
+        <button className="text-lg font-bold" onClick={prevSlide}>
           ←
         </button>
 
-        <p class="text-lg font-bold">{`${index() + 1}/${images.length}`}</p>
+        <p className="text-lg font-bold">{`${index + 1}/${images.length}`}</p>
 
-        <button class="text-lg font-bold" onClick={nextSlide}>
+        <button className="text-lg font-bold" onClick={nextSlide}>
           →
         </button>
       </div>

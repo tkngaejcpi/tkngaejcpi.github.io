@@ -9,6 +9,6 @@
       "@utils/*": ["utils/*"]
     },
     "jsx": "preserve",
-    "jsxImportSource": "solid-js"
+    "jsxImportSource": "react"
   }
 }
