@@ -11,7 +11,7 @@ export function onMount(action: () => void) {
   }, [flag]);
 }
 
-export function useFetchJsonData<T>(
+export function useFetchData<T>(
   initValue: T,
   url: string,
   handler: (res: Response) => Promise<T> = (res) => res.json(),

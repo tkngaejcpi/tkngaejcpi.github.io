@@ -1,6 +1,6 @@
 import { type Mention, type MentionResponse } from '@models/WebMention';
 
-import { onMount, useFetchJsonData } from '@utils/hooks';
+import { onMount, useFetchData } from '@utils/hooks';
 
 interface AvatarBoardProps {
   emoji: string;
@@ -38,7 +38,7 @@ interface WebMentionProps {
 }
 
 function WebMention({ url }: WebMentionProps) {
-  const [mentions, fetchMentions] = useFetchJsonData<Mention[]>(
+  const [mentions, fetchMentions] = useFetchData<Mention[]>(
     [],
     `https://webmention.io/api/mentions.jf2?target=${url}`,
     (res) => res.json().then((res) => (res as MentionResponse).children),
