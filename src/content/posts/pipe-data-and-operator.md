@@ -40,7 +40,7 @@ function map<A, B>(fn: (a: A) => B): (a: A[]) => B[];
 function filter<A>(fn: (a: A) => boolean): (a: A[]) => A[];
 ```
 
-這樣的定義就很適合，它 curry 了最後一個實際要操作的數據，我們可以把它是一個生成模擬 `Array` 的 `map`、`filter` 操作的 operator 的函數。
+這樣的定義就很適合，它 curry 了最後一個實際要操作的數據，我們可以把它看成是一個生成模擬 `Array` 的 `map`、`filter` 操作的 operator 的函數。
 
 我們假想一個場景，我們要篩選成年用戶，獲取它們的姓名，並轉成大寫，用上面定義的 `map` 和 `filter`，大概可以這樣做：
 
@@ -65,5 +65,4 @@ capitalizedAdultUserNames = pipe(
   (names) => names.map(capitalize),
 );
 ```
-
-看起來就很蠢對吧......
+做是可以做，但看起來就很蠢......
