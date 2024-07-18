@@ -18,17 +18,17 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/tailwind": "^5.1.0",
     "@tailwindcss/typography": "^0.5.13",
-    "astro": "^4.10.2",
+    "astro": "^4.11.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.4",
-    "typescript": "^5.4.5"
+    "tailwindcss": "^3.4.6",
+    "typescript": "^5.5.3"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/react": "^18.3.3",
-    "prettier": "^3.3.2",
-    "prettier-plugin-astro": "^0.14.0",
-    "prettier-plugin-tailwindcss": "^0.6.4"
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.5"
   }
 }
