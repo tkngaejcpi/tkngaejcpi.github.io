@@ -1,32 +1,29 @@
 import { createSignal, onMount } from 'solid-js';
 
-import {
-  mkMentions,
-  type Mention,
-  type MentionResponse,
-} from '@models/WebMention';
-
-import { pipe } from '@utils/function';
+import { type Mention, type MentionResponse } from '@models/WebMention';
 
 /* props */
 interface Props {
   url: string;
 }
 
-// TODO: reply
 function WebMention({ url }: Props) {
   const [mentions, setMentions] = createSignal<Mention[]>([]);
 
   const likes = () =>
-    mentions().filter((mention) => mention.wmProperty == 'like-of');
+    mentions().filter((mention) => mention['wm-property'] == 'like-of');
   const reposts = () =>
-    mentions().filter((metion) => metion.wmProperty == 'repost-of');
+    mentions().filter((metion) => metion['wm-property'] == 'repost-of');
+  const replies = () =>
+    mentions().filter((mention) => mention['wm-property'] == 'in-reply-to');
 
   /* fetch data on mount */
   onMount(() => {
     fetch(`https://webmention.io/api/mentions.jf2?target=${url}`)
       .then((res) => res.json())
-      .then((res: MentionResponse) => pipe(res, mkMentions, setMentions));
+      .then((res: MentionResponse) => {
+        setMentions(res.children);
+      });
   });
 
   return (
@@ -40,14 +37,14 @@ function WebMention({ url }: Props) {
         </p>
 
         <div class="flex flex-row gap-2">
-          {likes().map((mention) => (
-            <a href={mention.author.url}>
+          {likes().map((like) => (
+            <a href={like.author.url}>
               <img
                 height="32px"
                 width="32px"
-                title={mention.author.name}
-                alt={mention.author.name}
-                src={mention.author.photo}
+                title={like.author.name}
+                alt={like.author.name}
+                src={like.author.photo}
               />
             </a>
           ))}
@@ -61,16 +58,44 @@ function WebMention({ url }: Props) {
         </p>
 
         <div class="flex flex-row gap-2">
-          {reposts().map((mention) => (
-            <a href={mention.author.url}>
+          {reposts().map((repost) => (
+            <a href={repost.author.url}>
               <img
                 height="32px"
                 width="32px"
-                title={mention.author.name}
-                alt={mention.author.name}
-                src={mention.author.photo}
+                title={repost.author.name}
+                alt={repost.author.name}
+                src={repost.author.photo}
               />
             </a>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <p class="mb-2 flex flex-row text-lg font-medium">
+          <span class="mr-1">📩</span>
+          <span class="underline">回覆</span>
+        </p>
+
+        <div class="flex flex-col gap-2 pt-1">
+          {replies().map((reply) => (
+            <div class="flex flex-col gap-3">
+              <a class="flex flex-row gap-2" href={reply.author.url}>
+                <img
+                  class="h-6 w-6"
+                  height="32px"
+                  width="32px"
+                  title={reply.author.name}
+                  alt={reply.author.name}
+                  src={reply.author.photo}
+                />
+                <span class="font-medium text-neutral-800">
+                  {reply.author.name}
+                </span>
+              </a>
+              <div class="prose prose-sm" innerHTML={reply.content.html} />
+            </div>
           ))}
         </div>
       </div>
