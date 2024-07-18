@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 interface Slide {
@@ -23,12 +24,21 @@ const Album = (props: Props) => {
   };
 
   return (
-    <div className="not-prose flex flex-col gap-2 border-neutral-800 pb-2">
-      <img src={currentSlide.src} alt={currentSlide.description} />
+    <div className="not-prose flex flex-col gap-2 border-neutral-800">
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={index}
+          src={currentSlide.src}
+          alt={currentSlide.description}
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -100, opacity: 0 }}
+        />
 
-      <p className="text-center text-sm italic text-neutral-500">
-        {currentSlide.description}
-      </p>
+        <p className="text-center text-sm italic text-neutral-500">
+          {currentSlide.description}
+        </p>
+      </AnimatePresence>
 
       <div className="flex flex-row justify-around">
         <button className="text-lg font-bold" onClick={prevSlide}>

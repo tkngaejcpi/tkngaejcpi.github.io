@@ -22,14 +22,17 @@ const config = {
 
   /* prettier sort import settings */
   importOrder: [
-    /* for vite config */
+    /* vite config */
     '^vite$',
     '^vite-',
 
-    /* for astro */
+    /* astro */
     '^astro',
 
-    /* for simple source */
+    '^react$',
+    '^react.+$',
+
+    /* scope */
     '^@components/.+$',
     '^@config/.+$',
     '^@models/.+$',
