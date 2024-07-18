@@ -1,4 +1,10 @@
-import { type Mention, type MentionResponse } from '@models/WebMention';
+import { blogConfig } from '@config/blog';
+
+import {
+  type Mention,
+  type MentionReply,
+  type MentionResponse,
+} from '@models/WebMention';
 
 import { onMount, useFetchData } from '@utils/hooks';
 
@@ -11,10 +17,10 @@ interface AvatarBoardProps {
 function AvatarBoard({ emoji, label, mentions }: AvatarBoardProps) {
   return (
     <div>
-      <p className="mb-2 text-lg font-medium">
+      <h3 className="mb-2 text-lg font-medium">
         <span className="mr-1">{emoji}</span>
         <span className="underline">{label}</span>
-      </p>
+      </h3>
 
       <div className="flex flex-row gap-2">
         {mentions.map((mention, i) => (
@@ -27,6 +33,45 @@ function AvatarBoard({ emoji, label, mentions }: AvatarBoardProps) {
               src={mention.author.photo}
             />
           </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+interface RepliesProps {
+  replies: MentionReply[];
+}
+
+function Replies({ replies }: RepliesProps) {
+  return (
+    <div>
+      <h3 className="mb-2 flex flex-row text-lg font-medium">
+        <span className="mr-1">↩️</span>
+        <span className="underline">回覆</span>
+      </h3>
+
+      <div className="flex flex-col gap-2 pt-1">
+        {replies.map((reply, i) => (
+          <div key={i} className="flex flex-col gap-3">
+            <a className="flex flex-row gap-2" href={reply.author.url}>
+              <img
+                className="h-6 w-6"
+                height="32px"
+                width="32px"
+                title={reply.author.name}
+                alt={reply.author.name}
+                src={reply.author.photo}
+              />
+              <span className="font-medium text-neutral-800">
+                {reply.author.name}
+              </span>
+            </a>
+            <div
+              className="prose prose-sm"
+              dangerouslySetInnerHTML={{ __html: reply.content.html }}
+            />
+          </div>
         ))}
       </div>
     </div>
@@ -65,36 +110,28 @@ function WebMention({ url }: WebMentionProps) {
 
       <AvatarBoard emoji="⭐" label="讚好" mentions={likes} />
       <AvatarBoard emoji="🔁" label="轉發" mentions={reposts} />
+      <Replies replies={replies} />
 
       <div>
-        <p className="mb-2 flex flex-row text-lg font-medium">
+        <h3 className="mb-2 flex flex-row text-lg font-medium">
           <span className="mr-1">📩</span>
-          <span className="underline">回覆</span>
-        </p>
-
-        <div className="flex flex-col gap-2 pt-1">
-          {replies.map((reply, i) => (
-            <div key={i} className="flex flex-col gap-3">
-              <a className="flex flex-row gap-2" href={reply.author.url}>
-                <img
-                  className="h-6 w-6"
-                  height="32px"
-                  width="32px"
-                  title={reply.author.name}
-                  alt={reply.author.name}
-                  src={reply.author.photo}
-                />
-                <span className="font-medium text-neutral-800">
-                  {reply.author.name}
-                </span>
-              </a>
-              <div
-                className="prose prose-sm"
-                dangerouslySetInnerHTML={{ __html: reply.content.html }}
-              />
-            </div>
-          ))}
-        </div>
+          <span className="underline">發送你的 Webmention</span>
+        </h3>
+        <form
+          action={`https://webmention.io/${blogConfig.site}/webmention`}
+          method="post"
+          className="flex flex-row gap-2"
+        >
+          <input
+            type="url"
+            name="source"
+            placeholder="Webmention 的來源"
+            required
+            className="flex-grow rounded-sm border-2 border-neutral-300 px-2 py-1 text-neutral-800"
+          />
+          <input type="hidden" name="target" value={url} />
+          <input type="submit" value="🚀" className="p-1" />
+        </form>
       </div>
     </div>
   );
