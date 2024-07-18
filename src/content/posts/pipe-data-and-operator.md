@@ -1,5 +1,5 @@
 ---
-title: 'Pipe 中的流淌數據與 Operator'
+title: 'Pipe 中流淌的數據與 Operator'
 cover: 'https://images.rileycki.com/20240713.webp'
 createdDate: 2024-07-19
 tags: ['編程']
