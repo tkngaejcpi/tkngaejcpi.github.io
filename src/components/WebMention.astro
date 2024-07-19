@@ -3,9 +3,10 @@ import WebMention_ from '@components/WebMention_';
 
 interface Props {
   url: string;
+  mastdonRespot?: string;
 }
 
-const { url } = Astro.props;
+const { url, mastdonRespot } = Astro.props;
 ---
 
-<WebMention_ url={url} client:only="react" />
+<WebMention_ url={url} mastodonRepost={mastdonRespot} client:only="react" />

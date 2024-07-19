@@ -1,9 +1,10 @@
 ---
 title: 'Pipe 中流淌的數據與 Operator'
 cover: 'https://images.rileycki.com/20240713.webp'
+description: '「在 TypeScript 中怎麼定義 pipe 的類型？」「用多少個參數就 overload 多少次。」'
 createdDate: 2024-07-19
 tags: ['編程']
-description: '「在 TypeScript 中怎麼定義 pipe 的類型？」「用多少個參數就 overload 多少次。」'
+mastodonRepost: 'https://c7.io/@rileycki/112811033154666573'
 ---
 
 在編程領域，通常談到 `pipe` 都是指這樣一個函數：

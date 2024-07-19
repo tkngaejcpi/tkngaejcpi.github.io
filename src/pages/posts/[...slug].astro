@@ -65,7 +65,10 @@ const { Content } = await post.render();
     <div
       class="mb-6 mt-6 border-t-2 border-dashed border-neutral-400 px-1 pt-5"
     >
-      <WebMention url={`https://blog.rileycki.com/posts/${post.slug}/`} />
+      <WebMention
+        url={`https://blog.rileycki.com/posts/${post.slug}/`}
+        mastdonRespot={post.data.mastodonRepost}
+      />
     </div>
   </div>
 </Page>

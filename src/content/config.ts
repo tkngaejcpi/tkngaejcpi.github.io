@@ -5,11 +5,13 @@ const posts = defineCollection({
 
   schema: z.object({
     title: z.string(),
-    cover: z.optional(z.string().url()),
-    createdDate: z.date(),
-    tags: z.array(z.string()),
-
     description: z.optional(z.string()),
+    cover: z.optional(z.string().url()),
+    mastodonRepost: z.optional(z.string().url()),
+
+    createdDate: z.date(),
+
+    tags: z.array(z.string()),
   }),
 });
 

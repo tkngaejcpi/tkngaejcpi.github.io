@@ -80,9 +80,10 @@ function Replies({ replies }: RepliesProps) {
 
 interface WebMentionProps {
   url: string;
+  mastodonRepost?: string;
 }
 
-function WebMention({ url }: WebMentionProps) {
+function WebMention({ url, mastodonRepost }: WebMentionProps) {
   const [mentions, fetchMentions] = useFetchData<Mention[]>(
     [],
     `https://webmention.io/api/mentions.jf2?target=${url}`,
@@ -133,6 +134,25 @@ function WebMention({ url }: WebMentionProps) {
           <input type="submit" value="🚀" className="p-1" />
         </form>
       </div>
+
+      {mastodonRepost && (
+        <div>
+          <h3 className="mb-2 flex flex-row text-lg font-medium">
+            <span className="mr-1">🐘</span>
+            <span className="underline">在 Mastodon 發送 Webmention</span>
+          </h3>
+
+          <div className="prose prose-sm prose-neutral">
+            <p>
+              你在
+              <a href={mastodonRepost} target="_blank">
+                此條嘟文
+              </a>
+              下的公開點星、轉嘟和回覆都會發送 Webmention 給本站。
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
