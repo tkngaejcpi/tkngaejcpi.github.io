@@ -4,10 +4,10 @@ import { ViewTransitions } from 'astro:transitions';
 import type { StructuredData } from '@models/StructuredData';
 
 interface Props {
-  title: string;
-  description: string;
+	title: string;
+	description: string;
 
-  structuredData?: StructuredData;
+	structuredData?: StructuredData;
 }
 
 const { title, description, structuredData }: Props = Astro.props;
@@ -15,60 +15,60 @@ const hasStructuredData = !(structuredData === undefined);
 ---
 
 <html lang="zh">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
 
-    <!-- external relme auth -->
-    <link rel="me" href="https://c7.io/@rileycki" />
-    <link rel="me" href="https://github.com/tkngaejcpi" />
+		<!-- external relme auth -->
+		<link rel="me" href="https://c7.io/@rileycki" />
+		<link rel="me" href="https://github.com/tkngaejcpi" />
 
-    <!-- web mention -->
-    <link
-      rel="webmention"
-      href="https://webmention.io/blog.rileycki.com/webmention"
-    />
+		<!-- web mention -->
+		<link
+			rel="webmention"
+			href="https://webmention.io/blog.rileycki.com/webmention"
+		/>
 
-    <!-- set og: data -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    {
-      hasStructuredData && (
-        <meta property="og:image" content={structuredData!.image[0]} />
-      )
-    }
+		<!-- set og: data -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		{
+			hasStructuredData && (
+				<meta property="og:image" content={structuredData!.image[0]} />
+			)
+		}
 
-    <!--
+		<!--
       a little hack to set structured data,
       see https://github.com/withastro/astro/issues/3544
     -->
-    {
-      hasStructuredData && (
-        <script
-          type="application/ld+json"
-          set:html={JSON.stringify(structuredData)}
-          is:inline
-        />
-      )
-    }
+		{
+			hasStructuredData && (
+				<script
+					type="application/ld+json"
+					set:html={JSON.stringify(structuredData)}
+					is:inline
+				/>
+			)
+		}
 
-    <ViewTransitions />
+		<ViewTransitions />
 
-    <!-- cloudflare web analytics -->
-    <script
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "14bd5b11250945bda6698ecaa73d74eb"}'
-      is:inline></script>
-  </head>
+		<!-- cloudflare web analytics -->
+		<script
+			defer
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			data-cf-beacon='{"token": "14bd5b11250945bda6698ecaa73d74eb"}'
+			is:inline></script>
+	</head>
 
-  <body class="min-h-dvh w-dvw bg-orange-50">
-    <slot />
-  </body>
+	<body class="min-h-dvh w-dvw bg-orange-50">
+		<slot />
+	</body>
 </html>

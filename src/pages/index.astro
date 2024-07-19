@@ -10,56 +10,56 @@ import { mkLocaleDateString } from '@utils/date';
 
 /* take first 10 posts, ordered by created date, to generate index */
 const posts = await getCollection('posts').then((posts) =>
-  posts
-    .sort((a, b) => b.data.createdDate.getTime() - a.data.createdDate.getTime())
-    .slice(0, 10),
+	posts
+		.sort((a, b) => b.data.createdDate.getTime() - a.data.createdDate.getTime())
+		.slice(0, 10),
 );
 ---
 
 <Page title={blogConfig.title} description={blogConfig.description}>
-  <div class="flex flex-col">
-    <div class="mx-4">
-      <BlogInfo />
-    </div>
+	<div class="flex flex-col">
+		<div class="mx-4">
+			<BlogInfo />
+		</div>
 
-    <div class="px-4" transition:animate={blogConfig.transition}>
-      {
-        posts.map((post) => (
-          <a
-            class="block border-b-2 border-neutral-400 px-1 py-3"
-            href={`/posts/${post.slug}`}
-            data-astro-prefetch="viewport"
-          >
-            <article>
-              <h3 class="mb-0.5 text-lg font-bold text-neutral-900">
-                {post.data.title}
-              </h3>
+		<div class="px-4" transition:animate={blogConfig.transition}>
+			{
+				posts.map((post) => (
+					<a
+						class="block border-b-2 border-neutral-400 px-1 py-3"
+						href={`/posts/${post.slug}`}
+						data-astro-prefetch="viewport"
+					>
+						<article>
+							<h3 class="mb-0.5 text-lg font-bold text-neutral-900">
+								{post.data.title}
+							</h3>
 
-              <div class="mb-1 flex flex-row gap-1">
-                {post.data.tags.map((tag) => (
-                  <div class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
-                    #{tag}
-                  </div>
-                ))}
-              </div>
+							<div class="mb-1 flex flex-row gap-1">
+								{post.data.tags.map((tag) => (
+									<div class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
+										#{tag}
+									</div>
+								))}
+							</div>
 
-              <p class="mb-1 text-sm font-medium text-neutral-400">
-                {mkLocaleDateString(blogConfig)(post.data.createdDate)}
-              </p>
+							<p class="mb-1 text-sm font-medium text-neutral-400">
+								{mkLocaleDateString(blogConfig)(post.data.createdDate)}
+							</p>
 
-              {post.data.cover ? (
-                <img class="my-2" src={post.data.cover} />
-              ) : null}
+							{post.data.cover ? (
+								<img class="my-2" src={post.data.cover} />
+							) : null}
 
-              <p class="text-sm text-neutral-800">{post.data.description}</p>
-            </article>
-          </a>
-        ))
-      }
-    </div>
+							<p class="text-sm text-neutral-800">{post.data.description}</p>
+						</article>
+					</a>
+				))
+			}
+		</div>
 
-    <p class="p-3 text-center text-sm font-medium italic text-neutral-600">
-      ~主頁僅顯示最近十則~
-    </p>
-  </div>
+		<p class="p-3 text-center text-sm font-medium italic text-neutral-600">
+			~主頁僅顯示最近十則~
+		</p>
+	</div>
 </Page>

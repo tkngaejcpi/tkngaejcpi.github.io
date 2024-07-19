@@ -1,14 +1,14 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "baseUrl": "src/",
-    "paths": {
-      "@components/*": ["components/*"],
-      "@config/*": ["config/*"],
-      "@models/*": ["models/*"],
-      "@utils/*": ["utils/*"]
-    },
-    "jsx": "preserve",
-    "jsxImportSource": "react"
-  }
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		"baseUrl": "src/",
+		"paths": {
+			"@components/*": ["components/*"],
+			"@config/*": ["config/*"],
+			"@models/*": ["models/*"],
+			"@utils/*": ["utils/*"]
+		},
+		"jsx": "preserve",
+		"jsxImportSource": "react"
+	}
 }

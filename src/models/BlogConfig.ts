@@ -1,16 +1,16 @@
 import type { TransitionDirectionalAnimations } from 'astro';
 
 export interface BlogConfig {
-  site: string;
+	site: string;
 
-  title: string;
-  subtitleLines: string[];
-  description: string;
+	title: string;
+	subtitleLines: string[];
+	description: string;
 
-  author: string;
+	author: string;
 
-  dateLocale: Parameters<typeof Date.prototype.toLocaleDateString>[0];
-  dateOption: Parameters<typeof Date.prototype.toLocaleDateString>[1];
+	dateLocale: Parameters<typeof Date.prototype.toLocaleDateString>[0];
+	dateOption: Parameters<typeof Date.prototype.toLocaleDateString>[1];
 
-  transition: TransitionDirectionalAnimations;
+	transition: TransitionDirectionalAnimations;
 }

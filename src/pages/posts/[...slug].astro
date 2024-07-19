@@ -11,12 +11,12 @@ import { mkArticleStructuredData } from '@models/StructuredData';
 import { mkLocaleDateString } from '@utils/date';
 
 export const getStaticPaths = (async () => {
-  const posts = await getCollection('posts');
+	const posts = await getCollection('posts');
 
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
@@ -24,52 +24,52 @@ const { Content } = await post.render();
 ---
 
 <Page
-  title={post.data.title}
-  description={post.data.description || post.data.title}
-  structuredData={mkArticleStructuredData(blogConfig)(post)}
+	title={post.data.title}
+	description={post.data.description || post.data.title}
+	structuredData={mkArticleStructuredData(blogConfig)(post)}
 >
-  <div class="h-entry px-4" transition:animate={blogConfig.transition}>
-    <div
-      class="mb-3 flex flex-col gap-1 border-b-2 border-neutral-400 pb-3 pt-4"
-    >
-      <h1 class="p-name mb-1 text-2xl font-bold text-neutral-800">
-        {post.data.title}
-      </h1>
+	<div class="h-entry px-4" transition:animate={blogConfig.transition}>
+		<div
+			class="mb-3 flex flex-col gap-1 border-b-2 border-neutral-400 pb-3 pt-4"
+		>
+			<h1 class="p-name mb-1 text-2xl font-bold text-neutral-800">
+				{post.data.title}
+			</h1>
 
-      <!-- hidden self-link -->
-      <a
-        hidden
-        class="u-url"
-        href=`https://blog.rileycki.com/posts/${post.slug}/`></a>
+			<!-- hidden self-link -->
+			<a
+				hidden
+				class="u-url"
+				href=`https://blog.rileycki.com/posts/${post.slug}/`></a>
 
-      <div class="h-card text-sm font-medium text-neutral-400">
-        作者：<a
-          href="https://blog.rileycki.com"
-          class="p-author p-name u-url underline"
-          data-astro-prefetch="load">Riley Chang</a
-        >
-      </div>
+			<div class="h-card text-sm font-medium text-neutral-400">
+				作者：<a
+					href="https://blog.rileycki.com"
+					class="p-author p-name u-url underline"
+					data-astro-prefetch="load">Riley Chang</a
+				>
+			</div>
 
-      <div class="text-sm font-medium text-neutral-400">
-        發佈日期：<time
-          class="dt-published"
-          datetime={post.data.createdDate.toISOString()}
-          >{mkLocaleDateString(blogConfig)(post.data.createdDate)}</time
-        >
-      </div>
-    </div>
+			<div class="text-sm font-medium text-neutral-400">
+				發佈日期：<time
+					class="dt-published"
+					datetime={post.data.createdDate.toISOString()}
+					>{mkLocaleDateString(blogConfig)(post.data.createdDate)}</time
+				>
+			</div>
+		</div>
 
-    <article class="e-content prose prose-neutral overflow-y-scroll px-1">
-      <Content />
-    </article>
+		<article class="e-content prose prose-neutral overflow-y-scroll px-1">
+			<Content />
+		</article>
 
-    <div
-      class="mb-6 mt-6 border-t-2 border-dashed border-neutral-400 px-1 pt-5"
-    >
-      <WebMention
-        url={`https://blog.rileycki.com/posts/${post.slug}/`}
-        mastdonRespot={post.data.mastodonRepost}
-      />
-    </div>
-  </div>
+		<div
+			class="mb-6 mt-6 border-t-2 border-dashed border-neutral-400 px-1 pt-5"
+		>
+			<WebMention
+				url={`https://blog.rileycki.com/posts/${post.slug}/`}
+				mastdonRespot={post.data.mastodonRepost}
+			/>
+		</div>
+	</div>
 </Page>

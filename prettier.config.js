@@ -1,45 +1,47 @@
 /** @type {import("prettier").Config & import("@trivago/prettier-plugin-sort-imports").PluginConfig} */
 const config = {
-  plugins: [
-    '@trivago/prettier-plugin-sort-imports',
-    'prettier-plugin-astro',
-    'prettier-plugin-tailwindcss',
-  ],
+	plugins: [
+		'@trivago/prettier-plugin-sort-imports',
+		'prettier-plugin-astro',
+		'prettier-plugin-tailwindcss',
+	],
 
-  trailingComma: 'all',
-  tabWidth: 2,
-  semi: true,
-  singleQuote: true,
+	trailingComma: 'all',
+	semi: true,
+	singleQuote: true,
 
-  overrides: [
-    {
-      files: '*.astro',
-      options: {
-        parser: 'astro',
-      },
-    },
-  ],
+	useTabs: true,
+	tabWidth: 2,
 
-  /* prettier sort import settings */
-  importOrder: [
-    /* vite config */
-    '^vite$',
-    '^vite-',
+	overrides: [
+		{
+			files: '*.astro',
+			options: {
+				parser: 'astro',
+			},
+		},
+	],
 
-    /* astro */
-    '^astro',
+	/* prettier sort import settings */
+	importOrder: [
+		/* vite config */
+		'^vite$',
+		'^vite-',
 
-    '^react$',
-    '^react.+$',
+		/* astro */
+		'^astro',
 
-    /* scope */
-    '^@components/.+$',
-    '^@config/.+$',
-    '^@models/.+$',
-    '^@utils/.+$',
-    '^[./]',
-  ],
-  importOrderSeparation: true,
+		'^react$',
+		'^react.+$',
+
+		/* scope */
+		'^@components/.+$',
+		'^@config/.+$',
+		'^@models/.+$',
+		'^@utils/.+$',
+		'^[./]',
+	],
+	importOrderSeparation: true,
 };
 
 export default config;

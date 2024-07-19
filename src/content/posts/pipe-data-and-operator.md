@@ -16,7 +16,7 @@ function pipe<A, B, C>(a: A, fab: (a: A) => B, fbc: (b: B) => C): C;
 /* more and more... */
 
 function pipe(value: unknown, ...fns: Function[]) {
-  return fns.reduce((acc, fn) => fn(acc), value);
+	return fns.reduce((acc, fn) => fn(acc), value);
 }
 ```
 
@@ -47,11 +47,11 @@ function filter<A>(fn: (a: A) => boolean): (a: A[]) => A[];
 
 ```typescript
 const capitalizedAdultUserNames = pipe(
-  users,
-  map((user) => user.info),
-  filter((info) => info.age > 18),
-  map((info) => info.name),
-  map(capitalize),
+	users,
+	map((user) => user.info),
+	filter((info) => info.age > 18),
+	map((info) => info.name),
+	map(capitalize),
 );
 ```
 
@@ -59,11 +59,11 @@ const capitalizedAdultUserNames = pipe(
 
 ```typescript
 const capitalizedAdultUserNames = pipe(
-  users,
-  (users) => users.map((user) => user.info),
-  (infos) => infos.filter((info) => info.age > 18),
-  (infos) => infos.map((info) => info.name),
-  (names) => names.map(capitalize),
+	users,
+	(users) => users.map((user) => user.info),
+	(infos) => infos.filter((info) => info.age > 18),
+	(infos) => infos.map((info) => info.name),
+	(names) => names.map(capitalize),
 );
 ```
 

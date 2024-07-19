@@ -7,16 +7,16 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://blog.rileycki.com',
+	site: 'https://blog.rileycki.com',
 
-  integrations: [tailwind(), react(), mdx(), sitemap()],
+	integrations: [tailwind(), react(), mdx(), sitemap()],
 
-  prefetch: true,
+	prefetch: true,
 
-  markdown: {
-    shikiConfig: {
-      theme: 'ayu-dark',
-      wrap: true,
-    },
-  },
+	markdown: {
+		shikiConfig: {
+			theme: 'ayu-dark',
+			wrap: true,
+		},
+	},
 });
