@@ -33,7 +33,7 @@ const navigations: Navigation[] = [
   <div class="flex flex-row gap-4">
     {
       navigations.map((navigation) => (
-        <a href={navigation.location}>
+        <a href={navigation.location} data-astro-prefetch="load">
           <span class="text-sm font-medium text-neutral-600">
             {navigation.emoji}
           </span>

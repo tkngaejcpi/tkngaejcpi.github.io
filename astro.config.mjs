@@ -11,6 +11,8 @@ export default defineConfig({
 
   integrations: [tailwind(), react(), mdx(), sitemap()],
 
+  prefetch: true,
+
   markdown: {
     shikiConfig: {
       theme: 'ayu-dark',

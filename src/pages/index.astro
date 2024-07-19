@@ -28,6 +28,7 @@ const posts = await getCollection('posts').then((posts) =>
           <a
             class="block border-b-2 border-neutral-400 px-1 py-3"
             href={`/posts/${post.slug}`}
+            data-astro-prefetch="viewport"
           >
             <article>
               <h3 class="mb-0.5 text-lg font-bold text-neutral-900">
