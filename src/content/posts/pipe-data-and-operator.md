@@ -26,7 +26,7 @@ function pipe(value: unknown, ...fns: Function[]) {
 這種寫法在實際業務中可以很好增加可讀性，比如說：
 
 ```typescript
-result = pipe(input, double, plusThree, convertToString);
+const result = pipe(input, double, plusThree, convertToString);
 ```
 
 `result` 是怎麼來的就很一目了然。
@@ -45,7 +45,7 @@ function filter<A>(fn: (a: A) => boolean): (a: A[]) => A[];
 我們假想一個場景，我們要篩選成年用戶，獲取它們的姓名，並轉成大寫，用上面定義的 `map` 和 `filter`，大概可以這樣做：
 
 ```typescript
-capitalizedAdultUserNames = pipe(
+const capitalizedAdultUserNames = pipe(
   users,
   map((user) => user.info),
   filter((info) => info.age > 18),
@@ -57,7 +57,7 @@ capitalizedAdultUserNames = pipe(
 如果我們不採用這種 curry 掉數據參數的函數，只用 `Array` 原生的 `map` 和 `filter`：
 
 ```typescript
-capitalizedAdultUserNames = pipe(
+const capitalizedAdultUserNames = pipe(
   users,
   (users) => users.map((user) => user.info),
   (infos) => infos.filter((info) => info.age > 18),
@@ -65,4 +65,5 @@ capitalizedAdultUserNames = pipe(
   (names) => names.map(capitalize),
 );
 ```
+
 做是可以做，但看起來就很蠢......
