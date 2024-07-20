@@ -1,0 +1,9 @@
+---
+import type { ComponentProps } from 'react';
+
+import Album_ from './Album';
+
+type Props = ComponentProps<typeof Album_>;
+---
+
+<Album_ {...Astro.props} client:only="react" />

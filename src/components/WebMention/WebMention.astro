@@ -1,0 +1,9 @@
+---
+import type { ComponentProps } from 'react';
+
+import WebMention_ from './WebMention';
+
+type Props = ComponentProps<typeof WebMention_>;
+---
+
+<WebMention_ {...Astro.props} client:only="react" />
