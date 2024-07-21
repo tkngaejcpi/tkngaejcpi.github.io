@@ -1,0 +1,27 @@
+---
+import { blogConfig } from '@config/blog';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+---
+
+<div hidden class="h-entry">
+	<h1 class="p-name">{post.data.title}</h1>
+	<a class="u-url" href=`/posts/${post.slug}/`></a>
+	<time class="dt-published" datetime={post.data.createdDate.toISOString()}
+	></time>
+
+	<p class="e-content">{post.data.description}</p>
+
+	<div class="h-card">
+		<a
+			href="/"
+			class="p-author p-name u-url underline"
+			data-astro-prefetch="load">${blogConfig.author}</a
+		>
+	</div>
+</div>

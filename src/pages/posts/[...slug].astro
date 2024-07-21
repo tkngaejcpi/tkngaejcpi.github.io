@@ -9,6 +9,7 @@ import { blogConfig } from '@config/blog';
 import { mkArticleStructuredData } from '@models/StructuredData';
 
 import { mkLocaleDateString } from '@utils/date';
+import MicroFormat from '@components/MicroFormatData/MicroFormat.astro';
 
 export const getStaticPaths = (async () => {
 	const posts = await getCollection('posts');
@@ -28,38 +29,24 @@ const { Content } = await post.render();
 	description={post.data.description || post.data.title}
 	structuredData={mkArticleStructuredData(blogConfig)(post)}
 >
-	<div class="h-entry px-4" transition:animate={blogConfig.transition}>
+	<MicroFormat post={post} />
+
+	<div class="px-4" transition:animate={blogConfig.transition}>
 		<div
 			class="mb-3 flex flex-col gap-1 border-b-2 border-neutral-400 pb-3 pt-4"
 		>
-			<h1 class="p-name mb-1 text-2xl font-bold text-neutral-900">
+			<h1 class="mb-1 text-2xl font-bold text-neutral-900">
 				{post.data.title}
 			</h1>
 
-			<!-- hidden self-link -->
-			<a
-				hidden
-				class="u-url"
-				href=`https://blog.rileycki.com/posts/${post.slug}/`></a>
-
-			<div class="h-card text-sm font-medium text-neutral-500">
-				作者：<a
-					href="https://blog.rileycki.com"
-					class="p-author p-name u-url underline"
-					data-astro-prefetch="load">Riley Chang</a
-				>
-			</div>
-
 			<div class="text-sm font-medium text-neutral-500">
-				發佈日期：<time
-					class="dt-published"
-					datetime={post.data.createdDate.toISOString()}
+				發佈日期：<time datetime={post.data.createdDate.toISOString()}
 					>{mkLocaleDateString(blogConfig)(post.data.createdDate)}</time
 				>
 			</div>
 		</div>
 
-		<article class="e-content prose prose-neutral overflow-y-scroll px-1">
+		<article class="prose prose-neutral overflow-y-scroll px-1">
 			<Content />
 		</article>
 
