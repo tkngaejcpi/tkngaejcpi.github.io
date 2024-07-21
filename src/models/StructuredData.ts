@@ -41,7 +41,7 @@ export const mkArticleStructuredData: (
 			{
 				'@type': 'Person',
 				name: blogConfig.author,
-				url: blogConfig.site,
+				url: `https://${blogConfig.site}`,
 			},
 		],
 	});

@@ -3,7 +3,7 @@ import { fade } from 'astro:transitions';
 import { type BlogConfig } from '@models/BlogConfig';
 
 export const blogConfig: BlogConfig = {
-	site: 'https://blog.rileycki.com',
+	site: 'blog.rileycki.com',
 
 	title: '廢話集散空間',
 	subtitleLines: ['最好沒有人明白我說什麼', '只有你聽懂我想什麼'],
