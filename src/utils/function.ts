@@ -1,4 +1,4 @@
-import type { Operator } from '@models/Logic';
+type Operator<A> = (_: A) => A;
 
 export function pipe<A>(a: A): A;
 export function pipe<A, B>(a: A, fab: (a: A) => B): B;
