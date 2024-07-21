@@ -17,11 +17,5 @@ const { post } = Astro.props;
 
 	<p class="e-content">{post.data.description}</p>
 
-	<div class="h-card">
-		<a
-			href="/"
-			class="p-author p-name u-url underline"
-			data-astro-prefetch="load">${blogConfig.author}</a
-		>
-	</div>
+	<a rel="author" href="/" class="h-card p-author">${blogConfig.author}</a>
 </div>
