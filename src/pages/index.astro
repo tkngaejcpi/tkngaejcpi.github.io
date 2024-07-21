@@ -47,7 +47,7 @@ const posts = await getCollection('posts').then((posts) =>
 							</div>
 
 							{post.data.cover ? (
-								<img class="my-2" src={post.data.cover} />
+								<img class="my-2" src={post.data.cover} alt="" />
 							) : null}
 
 							<p class="text-sm text-neutral-700">{post.data.description}</p>

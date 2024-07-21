@@ -25,7 +25,7 @@ export function pipe<A, B, C, D, E, F>(
 	fef: (e: E) => F,
 ): E;
 
-export function pipe(value: unknown, ...fns: Function[]) {
+export function pipe(value: unknown, ...fns: ((_: unknown) => unknown)[]) {
 	return fns.reduce((acc, fn) => fn(acc), value);
 }
 
