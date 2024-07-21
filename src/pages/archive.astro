@@ -2,11 +2,10 @@
 import { getCollection } from 'astro:content';
 
 import BlogInfo from '@components/BlogInfo';
+import LocaleDate from '@components/LocaleDate';
 import Page from '@components/Page';
 
 import { blogConfig } from '@config/blog';
-
-import { mkLocaleDateString } from '@utils/date';
 
 /* get all posts, to list them in the archive page */
 const posts = await getCollection('posts').then((posts) =>
@@ -45,9 +44,9 @@ const posts = await getCollection('posts').then((posts) =>
 										))}
 									</div>
 
-									<span class="text-sm font-medium text-neutral-500">
-										{mkLocaleDateString(blogConfig)(post.data.createdDate)}
-									</span>
+									<div class="text-sm font-medium text-neutral-500">
+										<LocaleDate date={post.data.createdDate} />
+									</div>
 								</div>
 							</div>
 						</a>

@@ -2,14 +2,13 @@
 import type { GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 
-import WebMention from '@components/WebMention';
+import LocaleDate from '@components/LocaleDate';
+import MicroFormat from '@components/MicroFormatData/MicroFormat.astro';
 import Page from '@components/Page';
+import WebMention from '@components/WebMention';
 
 import { blogConfig } from '@config/blog';
 import { mkArticleStructuredData } from '@models/StructuredData';
-
-import { mkLocaleDateString } from '@utils/date';
-import MicroFormat from '@components/MicroFormatData/MicroFormat.astro';
 
 export const getStaticPaths = (async () => {
 	const posts = await getCollection('posts');
@@ -40,9 +39,7 @@ const { Content } = await post.render();
 			</h1>
 
 			<div class="text-sm font-medium text-neutral-500">
-				發佈日期：<time datetime={post.data.createdDate.toISOString()}
-					>{mkLocaleDateString(blogConfig)(post.data.createdDate)}</time
-				>
+				發佈日期： <LocaleDate date={post.data.createdDate} />
 			</div>
 		</div>
 

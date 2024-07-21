@@ -1,1 +1,1 @@
-export { default } from './MicroFormat.astro'
+export { default } from './MicroFormat.astro';

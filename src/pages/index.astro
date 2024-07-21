@@ -2,11 +2,10 @@
 import { getCollection } from 'astro:content';
 
 import BlogInfo from '@components/BlogInfo';
+import LocaleDate from '@components/LocaleDate';
 import Page from '@components/Page';
 
 import { blogConfig } from '@config/blog';
-
-import { mkLocaleDateString } from '@utils/date';
 
 /* take first 10 posts, ordered by created date, to generate index */
 const posts = await getCollection('posts').then((posts) =>
@@ -43,9 +42,9 @@ const posts = await getCollection('posts').then((posts) =>
 								))}
 							</div>
 
-							<p class="mb-1 text-sm font-medium text-neutral-500">
-								{mkLocaleDateString(blogConfig)(post.data.createdDate)}
-							</p>
+							<div class="mb-1 text-sm font-medium text-neutral-500">
+								<LocaleDate date={post.data.createdDate} />
+							</div>
 
 							{post.data.cover ? (
 								<img class="my-2" src={post.data.cover} />
