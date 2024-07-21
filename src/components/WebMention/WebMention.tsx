@@ -36,7 +36,9 @@ function WebMention({ target, mastodonRepost }: WebMentionProps) {
 
 	return (
 		<div className="flex flex-col gap-4">
-			<h2 className="text-xl font-bold">來自 Webmention 的回應</h2>
+			<h2 className="text-xl font-bold text-neutral-900">
+				來自 Webmention 的回應
+			</h2>
 
 			<AvatarBoard emoji="⭐" label="讚好" mentions={likes} />
 			<AvatarBoard emoji="🔁" label="轉發" mentions={reposts} />

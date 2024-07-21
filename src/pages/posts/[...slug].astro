@@ -32,7 +32,7 @@ const { Content } = await post.render();
 		<div
 			class="mb-3 flex flex-col gap-1 border-b-2 border-neutral-400 pb-3 pt-4"
 		>
-			<h1 class="p-name mb-1 text-2xl font-bold text-neutral-800">
+			<h1 class="p-name mb-1 text-2xl font-bold text-neutral-900">
 				{post.data.title}
 			</h1>
 
@@ -42,7 +42,7 @@ const { Content } = await post.render();
 				class="u-url"
 				href=`https://blog.rileycki.com/posts/${post.slug}/`></a>
 
-			<div class="h-card text-sm font-medium text-neutral-400">
+			<div class="h-card text-sm font-medium text-neutral-500">
 				作者：<a
 					href="https://blog.rileycki.com"
 					class="p-author p-name u-url underline"
@@ -50,7 +50,7 @@ const { Content } = await post.render();
 				>
 			</div>
 
-			<div class="text-sm font-medium text-neutral-400">
+			<div class="text-sm font-medium text-neutral-500">
 				發佈日期：<time
 					class="dt-published"
 					datetime={post.data.createdDate.toISOString()}

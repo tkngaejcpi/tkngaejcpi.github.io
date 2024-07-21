@@ -7,7 +7,7 @@ interface Props {
 function Replies({ replies }: Props) {
 	return (
 		<div>
-			<h3 className="mb-2 flex flex-row text-lg font-medium">
+			<h3 className="mb-2 flex flex-row text-lg font-medium text-neutral-700">
 				<span className="mr-1">↩️</span>
 				<span className="underline">回覆</span>
 			</h3>
@@ -24,7 +24,7 @@ function Replies({ replies }: Props) {
 								alt={reply.author.name}
 								src={reply.author.photo}
 							/>
-							<span className="font-medium text-neutral-800">
+							<span className="font-medium text-neutral-700">
 								{reply.author.name}
 							</span>
 						</a>

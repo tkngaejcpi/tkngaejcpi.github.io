@@ -1,29 +1,18 @@
 ---
+import { navigations } from './data';
+
 import { blogConfig } from '@config/blog';
-
-/* props */
-interface Navigation {
-	emoji: string;
-	description: string;
-	location: string;
-}
-
-const navigations: Navigation[] = [
-	{ emoji: '🏡', description: '主頁', location: '/' },
-	{ emoji: '🗃️', description: '歸檔', location: '/archive' },
-	{ emoji: '🧐', description: '關於', location: '/about' },
-];
 ---
 
 <div
 	class="flex flex-col items-center gap-2 border-b-2 border-neutral-400 pb-4 pt-8"
 >
-	<h1 class="text-3xl font-bold text-neutral-800">{blogConfig.title}</h1>
+	<h1 class="text-3xl font-bold text-neutral-900">{blogConfig.title}</h1>
 
 	<div>
 		{
 			blogConfig.subtitleLines.map((subtitleLine) => (
-				<p class="text-center text-sm font-medium text-neutral-600">
+				<p class="text-center text-sm font-medium text-neutral-700">
 					{subtitleLine}
 				</p>
 			))
@@ -34,10 +23,10 @@ const navigations: Navigation[] = [
 		{
 			navigations.map((navigation) => (
 				<a href={navigation.location} data-astro-prefetch="load">
-					<span class="text-sm font-medium text-neutral-600">
+					<span class="text-sm font-medium text-neutral-700">
 						{navigation.emoji}
 					</span>
-					<span class="text-sm font-medium text-neutral-600 underline">
+					<span class="text-sm font-medium text-neutral-700 underline">
 						{navigation.description}
 					</span>
 				</a>

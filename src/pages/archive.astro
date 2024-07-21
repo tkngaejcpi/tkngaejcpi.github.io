@@ -39,13 +39,13 @@ const posts = await getCollection('posts').then((posts) =>
 								<div class="flex flex-row place-items-center gap-1">
 									<div class="flex flex-row gap-1">
 										{post.data.tags.map((tag) => (
-											<span class="rounded-md border-2 border-neutral-300 px-1 text-sm font-medium text-neutral-400">
+											<span class="rounded-md border-2 border-neutral-400 px-1 text-sm font-medium text-neutral-500">
 												#{tag}
 											</span>
 										))}
 									</div>
 
-									<span class="text-sm font-medium text-neutral-400">
+									<span class="text-sm font-medium text-neutral-500">
 										{mkLocaleDateString(blogConfig)(post.data.createdDate)}
 									</span>
 								</div>

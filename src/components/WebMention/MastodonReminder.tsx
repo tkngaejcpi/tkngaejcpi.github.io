@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 interface Props {
 	mastodonRepost?: string;
 }
@@ -8,7 +6,7 @@ function MastodonReminder({ mastodonRepost }: Props) {
 	return (
 		mastodonRepost && (
 			<div>
-				<h3 className="mb-2 flex flex-row text-lg font-medium">
+				<h3 className="mb-2 flex flex-row text-lg font-medium text-neutral-700">
 					<span className="mr-1">🐘</span>
 					<span className="underline">在 Mastodon 發送 Webmention</span>
 				</h3>

@@ -7,7 +7,7 @@ interface Props {
 function MentionForm({ url }: Props) {
 	return (
 		<div>
-			<h3 className="mb-2 flex flex-row text-lg font-medium">
+			<h3 className="mb-2 flex flex-row text-lg font-medium text-neutral-700">
 				<span className="mr-1">📩</span>
 				<span className="underline">發送你的 Webmention</span>
 			</h3>
@@ -21,7 +21,7 @@ function MentionForm({ url }: Props) {
 					name="source"
 					placeholder="Webmention 的來源"
 					required
-					className="flex-grow rounded-sm border-2 border-neutral-300 px-2 py-1 text-neutral-800"
+					className="flex-grow rounded-sm border-2 border-neutral-300 px-2 py-1 text-neutral-700"
 				/>
 				<input type="hidden" name="target" value={url} />
 				<input type="submit" value="🚀" className="p-1" />
