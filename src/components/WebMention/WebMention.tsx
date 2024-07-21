@@ -5,6 +5,7 @@ import { useWebMention } from '@models/WebMention';
 import { onMount } from '@utils/hooks';
 
 import AvatarBoard from './AvatarBoard';
+import Loading from './Loading';
 import MastodonReminder from './MastodonReminder';
 import MentionForm from './MentionForm';
 import Replies from './Replies';
@@ -17,7 +18,7 @@ interface WebMentionProps {
 }
 
 function WebMention({ slug, mastodonRepost }: WebMentionProps) {
-	const [mentions, fetchMentions] = useWebMention(slug);
+	const [mentions, isFetching, fetchMentions] = useWebMention(slug);
 
 	const likes = mentions.filter(
 		(mention) => mention['wm-property'] == 'like-of',
@@ -40,9 +41,16 @@ function WebMention({ slug, mastodonRepost }: WebMentionProps) {
 				來自 Webmention 的回應
 			</h2>
 
-			<AvatarBoard emoji="⭐" label="讚好" mentions={likes} />
-			<AvatarBoard emoji="🔁" label="轉發" mentions={reposts} />
-			<Replies replies={replies} />
+			{isFetching ? (
+				<Loading />
+			) : (
+				<>
+					<AvatarBoard emoji="⭐" label="讚好" mentions={likes} />
+					<AvatarBoard emoji="🔁" label="轉發" mentions={reposts} />
+					<Replies replies={replies} />
+				</>
+			)}
+
 			<MentionForm {...{ slug }} />
 			<MastodonReminder mastodonRepost={mastodonRepost} />
 		</div>

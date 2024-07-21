@@ -15,16 +15,20 @@ export function useFetchData<T>(
 	initValue: T,
 	url: string,
 	handler: (res: Response) => Promise<T> = (res) => res.json(),
-): [T, () => void] {
+): [T, boolean, () => void] {
 	const [data, setData] = useState<T>(initValue);
+	const [isFetching, setIsFetching] = useState(false);
 
 	const fetchData = () => {
+		setIsFetching(true);
+
 		fetch(url)
 			.then(handler)
 			.then((value) => {
 				setData(value);
+				setIsFetching(false);
 			});
 	};
 
-	return [data, fetchData];
+	return [data, isFetching, fetchData];
 }
