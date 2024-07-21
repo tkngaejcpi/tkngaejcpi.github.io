@@ -1,10 +1,14 @@
+import type { CollectionEntry } from 'astro:content';
+
 import { blogConfig } from '@config/blog';
 
+type Slug = CollectionEntry<'posts'>['slug'];
+
 interface Props {
-	url: string;
+	slug: Slug;
 }
 
-function MentionForm({ url }: Props) {
+function MentionForm({ slug }: Props) {
 	return (
 		<div>
 			<h3 className="mb-2 flex flex-row text-lg font-bold text-neutral-900">
@@ -23,7 +27,11 @@ function MentionForm({ url }: Props) {
 					required
 					className="flex-grow rounded-sm border-2 border-neutral-300 px-2 py-1 text-neutral-700"
 				/>
-				<input type="hidden" name="target" value={url} />
+				<input
+					type="hidden"
+					name="target"
+					value={`https://${blogConfig.site}/posts/${slug}`}
+				/>
 				<input type="submit" value="🚀" className="p-1" />
 			</form>
 		</div>

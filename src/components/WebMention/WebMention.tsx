@@ -1,23 +1,23 @@
-import { type Mention, type MentionResponse } from '@models/WebMention';
+import type { CollectionEntry } from 'astro:content';
 
-import { onMount, useFetchData } from '@utils/hooks';
+import { useWebMention } from '@models/WebMention';
+
+import { onMount } from '@utils/hooks';
 
 import AvatarBoard from './AvatarBoard';
 import MastodonReminder from './MastodonReminder';
 import MentionForm from './MentionForm';
 import Replies from './Replies';
 
+type Slug = CollectionEntry<'posts'>['slug'];
+
 interface WebMentionProps {
-	target: string;
+	slug: Slug;
 	mastodonRepost?: string;
 }
 
-function WebMention({ target, mastodonRepost }: WebMentionProps) {
-	const [mentions, fetchMentions] = useFetchData<Mention[]>(
-		[],
-		`https://webmention.io/api/mentions.jf2?target=${target}`,
-		(res) => res.json().then((res) => (res as MentionResponse).children),
-	);
+function WebMention({ slug, mastodonRepost }: WebMentionProps) {
+	const [mentions, fetchMentions] = useWebMention(slug);
 
 	const likes = mentions.filter(
 		(mention) => mention['wm-property'] == 'like-of',
@@ -43,7 +43,7 @@ function WebMention({ target, mastodonRepost }: WebMentionProps) {
 			<AvatarBoard emoji="⭐" label="讚好" mentions={likes} />
 			<AvatarBoard emoji="🔁" label="轉發" mentions={reposts} />
 			<Replies replies={replies} />
-			<MentionForm url={target} />
+			<MentionForm {...{ slug }} />
 			<MastodonReminder mastodonRepost={mastodonRepost} />
 		</div>
 	);

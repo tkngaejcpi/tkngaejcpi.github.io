@@ -8,6 +8,7 @@ import Page from '@components/Page';
 import WebMention from '@components/WebMention';
 
 import { blogConfig } from '@config/blog';
+
 import { mkArticleStructuredData } from '@models/StructuredData';
 
 export const getStaticPaths = (async () => {
@@ -26,7 +27,7 @@ const { Content } = await post.render();
 <Page
 	title={post.data.title}
 	description={post.data.description || post.data.title}
-	structuredData={mkArticleStructuredData(blogConfig)(post)}
+	structuredData={mkArticleStructuredData(post)}
 >
 	<MicroFormat post={post} />
 
@@ -50,10 +51,7 @@ const { Content } = await post.render();
 		<div
 			class="mb-6 mt-6 border-t-2 border-dashed border-neutral-400 px-1 pt-5"
 		>
-			<WebMention
-				target={`https://${blogConfig.site}/posts/${post.slug}/`}
-				mastodonRepost={post.data.mastodonRepost}
-			/>
+			<WebMention slug={post.slug} mastodonRepost={post.data.mastodonRepost} />
 		</div>
 	</div>
 </Page>

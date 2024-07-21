@@ -1,6 +1,6 @@
 import { fade } from 'astro:transitions';
 
-import { type BlogConfig } from '@models/BlogConfig';
+import { type BlogConfig } from './type';
 
 export const blogConfig: BlogConfig = {
 	site: 'blog.rileycki.com',
