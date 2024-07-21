@@ -12,7 +12,7 @@ interface Props {
 function AvatarBoard({ emoji, label, mentions }: Props) {
 	return (
 		<div>
-			<h3 className="mb-2 text-lg font-medium text-neutral-700">
+			<h3 className="mb-2 text-lg font-bold text-neutral-900">
 				<span className="mr-1">{emoji}</span>
 				<span className="underline">{label}</span>
 			</h3>

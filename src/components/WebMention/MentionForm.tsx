@@ -7,7 +7,7 @@ interface Props {
 function MentionForm({ url }: Props) {
 	return (
 		<div>
-			<h3 className="mb-2 flex flex-row text-lg font-medium text-neutral-700">
+			<h3 className="mb-2 flex flex-row text-lg font-bold text-neutral-900">
 				<span className="mr-1">📩</span>
 				<span className="underline">發送你的 Webmention</span>
 			</h3>
