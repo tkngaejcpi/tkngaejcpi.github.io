@@ -10,6 +10,8 @@ export const blogConfig: BlogConfig = {
 	description: '什麼都可能寫，喜歡也好，不喜歡也好。',
 
 	author: 'Riley Chang',
+	mastodon: '@rileycki@c7.io',
+	github: 'tkngaejcpi',
 
 	dateLocale: 'zh-TW',
 	dateOption: { year: 'numeric', month: 'long', day: 'numeric' },

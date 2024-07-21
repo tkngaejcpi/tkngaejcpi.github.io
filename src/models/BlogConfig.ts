@@ -8,6 +8,8 @@ export interface BlogConfig {
 	description: string;
 
 	author: string;
+	mastodon: `@${string}@${string}`;
+	github: string;
 
 	dateLocale: Parameters<typeof Date.prototype.toLocaleDateString>[0];
 	dateOption: Parameters<typeof Date.prototype.toLocaleDateString>[1];

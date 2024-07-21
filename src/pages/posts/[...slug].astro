@@ -51,7 +51,7 @@ const { Content } = await post.render();
 			class="mb-6 mt-6 border-t-2 border-dashed border-neutral-400 px-1 pt-5"
 		>
 			<WebMention
-				target={`https://blog.rileycki.com/posts/${post.slug}/`}
+				target={`https://${blogConfig.site}/posts/${post.slug}/`}
 				mastodonRepost={post.data.mastodonRepost}
 			/>
 		</div>
