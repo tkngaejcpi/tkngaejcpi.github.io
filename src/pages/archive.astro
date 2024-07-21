@@ -16,12 +16,12 @@ const posts = await getCollection('posts').then((posts) =>
 ---
 
 <Page title={blogConfig.title} description={blogConfig.description}>
-	<div class="flex flex-col py-2">
+	<div class="flex flex-col">
 		<div class="mx-4">
 			<BlogInfo />
 		</div>
 
-		<ul class="list-disc px-4" transition:animate={blogConfig.transition}>
+		<ul class="list-disc px-4 pb-4" transition:animate={blogConfig.transition}>
 			{
 				posts.map((post) => (
 					<li class="ml-5 px-1 pt-3">
