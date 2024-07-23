@@ -27,7 +27,12 @@ function Album({ slides }: Props) {
 			{/* use hidden element to prefetch all images in the album */}
 			<div hidden>
 				{slides.map(({ src }, i) => (
-					<img src={src} fetchPriority={index == i ? 'high' : 'low'} alt="" />
+					<img
+						key={src}
+						src={src}
+						fetchPriority={index == i ? 'high' : 'low'}
+						alt=""
+					/>
 				))}
 			</div>
 
