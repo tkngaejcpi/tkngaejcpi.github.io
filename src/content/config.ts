@@ -6,10 +6,13 @@ const posts = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		cover: z.string().url(),
-		mastodonRepost: z.optional(z.string().url()),
-
 		createdDate: z.date(),
+
+		cover: z.string().url(),
+		coverHeight: z.number(),
+		coverWidth: z.number(),
+
+		mastodonRepost: z.optional(z.string().url()),
 	}),
 });
 

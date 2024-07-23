@@ -34,18 +34,18 @@ const posts = await getCollection('posts').then((posts) =>
 								{post.data.title}
 							</h3>
 
-							{/* <p class="text-sm font-medium text-neutral-500">
-								關鍵字：{post.data.keywords.join('，')}
-							</p> */}
-
 							<p class="text-sm font-medium text-neutral-500">
 								發佈日期：
 								<LocaleDate date={post.data.createdDate} />
 							</p>
 
-							{post.data.cover && (
-								<img class="my-2" src={post.data.cover} alt="" />
-							)}
+							<img
+								src={post.data.cover}
+								height={post.data.coverHeight}
+								width={post.data.coverWidth}
+								class="my-2"
+								alt=""
+							/>
 
 							<p class="text-sm text-neutral-700">{post.data.description}</p>
 						</article>

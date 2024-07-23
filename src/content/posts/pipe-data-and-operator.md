@@ -1,8 +1,12 @@
 ---
 title: 'Pipe 中流淌的數據與 Operator'
 description: '「在 TypeScript 中怎麼定義 pipe 的類型？」「用多少個參數就 overload 多少次。」'
-cover: 'https://images.rileycki.com/20240713.webp'
 createdDate: 2024-07-19
+
+cover: 'https://images.rileycki.com/20240713.webp'
+coverHeight: 1000
+coverWidth: 1500
+
 mastodonRepost: 'https://c7.io/@rileycki/112811033154666573'
 ---
 
