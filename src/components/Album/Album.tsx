@@ -24,10 +24,10 @@ function Album({ slides }: Props) {
 
 	return (
 		<div className="not-prose flex flex-col gap-2 border-neutral-800">
-			{/* small trick to prefetch images */}
+			{/* use hidden element to prefetch all images in the album */}
 			<div hidden>
-				{slides.map((slide) => (
-					<img key={slide.src} src={slide.src} alt={slide.description} />
+				{slides.map(({ src }, i) => (
+					<img src={src} fetchPriority={index == i ? 'high' : 'low'} alt="" />
 				))}
 			</div>
 
