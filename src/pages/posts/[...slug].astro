@@ -32,16 +32,14 @@ const { Content } = await post.render();
 	<MicroFormat post={post} />
 
 	<div class="px-4" transition:animate={blogConfig.transition}>
-		<div
-			class="mb-3 flex flex-col gap-1 border-b-2 border-neutral-400 pb-3 pt-4"
-		>
-			<h1 class="mb-1 text-2xl font-bold text-neutral-900">
+		<div class="mb-3 border-b-2 border-neutral-400 pb-3 pt-4">
+			<h1 class="mb-2 text-2xl font-bold text-neutral-900">
 				{post.data.title}
 			</h1>
 
-			<div class="text-sm font-medium text-neutral-500">
-				發佈日期： <LocaleDate date={post.data.createdDate} />
-			</div>
+			<p class="text-sm font-medium text-neutral-500">
+				發佈日期：<LocaleDate date={post.data.createdDate} />
+			</p>
 		</div>
 
 		<article class="prose prose-neutral overflow-y-scroll px-1">

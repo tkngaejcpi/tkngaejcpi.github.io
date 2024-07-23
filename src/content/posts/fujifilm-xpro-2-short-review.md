@@ -3,7 +3,6 @@ title: '短評 Fujifilm X-Pro 2'
 description: '「你長壽的祕訣是什麼？」「少看網友吵架。」'
 cover: 'https://images.rileycki.com/20240711.webp'
 createdDate: 2024-07-18
-tags: ['攝影']
 mastodonRepost: 'https://c7.io/@rileycki/112806296451657559'
 ---
 

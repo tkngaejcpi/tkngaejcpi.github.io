@@ -8,8 +8,8 @@ const Loading = () => {
 					r="40"
 					fill="none"
 					stroke="#525252"
-					stroke-width="15"
-					stroke-dasharray={30 * 2 * 3.14}
+					strokeWidth="15"
+					strokeDasharray={30 * 2 * 3.14}
 				/>
 			</svg>
 		</div>

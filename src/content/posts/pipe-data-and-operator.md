@@ -1,9 +1,8 @@
 ---
 title: 'Pipe 中流淌的數據與 Operator'
-cover: 'https://images.rileycki.com/20240713.webp'
 description: '「在 TypeScript 中怎麼定義 pipe 的類型？」「用多少個參數就 overload 多少次。」'
+cover: 'https://images.rileycki.com/20240713.webp'
 createdDate: 2024-07-19
-tags: ['編程']
 mastodonRepost: 'https://c7.io/@rileycki/112811033154666573'
 ---
 
@@ -15,7 +14,7 @@ function pipe<A, B>(a: A, fab: (a: A) => B): B;
 function pipe<A, B, C>(a: A, fab: (a: A) => B, fbc: (b: B) => C): C;
 /* more and more... */
 
-function pipe(value: unknown, ...fns: Function[]) {
+function pipe(value: unknown, ...fns: ((_: any) => any)[]) {
 	return fns.reduce((acc, fn) => fn(acc), value);
 }
 ```
