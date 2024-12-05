@@ -1,0 +1,20 @@
+---
+import Catalog from "@components/Catalog.astro";
+import Page from "@components/Page.astro";
+---
+
+<Page title="home">
+	<div class="container">
+		<Catalog tag="primer" title="Primer" />
+	</div>
+</Page>
+
+<style>
+	div.container {
+		padding: 2em;
+
+		display: flex;
+		flex-direction: column;
+		gap: 2em;
+	}
+</style>

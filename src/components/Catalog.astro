@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+    tag: string;
+    title: string;
+    maxLength?: number;
+}
+
+const { tag, title, maxLength = 10 } = Astro.props;
+
+const postsWithTag = (await getCollection("posts"))
+    .filter((post) => post.data.tags.includes(tag))
+    .slice(0, maxLength);
+---
+
+<div>
+    <h2>{title}</h2>
+
+    <ul>
+        {
+            postsWithTag.map((post) => (
+                <li>
+                    <a href={`/posts/${post.id}`}>{post.data.title}</a>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<style>
+    h2 {
+        margin-top: 0em;
+
+        font-size: 1.75em
+    }
+
+    ul {
+        padding-left: 1em;
+        list-style: disclosure-closed;
+    }
+</style>
