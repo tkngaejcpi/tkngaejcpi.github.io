@@ -1,20 +1,20 @@
 ---
-import "katex/dist/katex.min.css";
+import 'katex/dist/katex.min.css';
 
-import type { GetStaticPaths } from "astro";
-import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
 
-import Page from "@components/Page.astro";
+import Page from '@components/Page.astro';
 
-import { formatDate } from "@utils/locale";
+import { formatDate } from '@utils/locale';
 
 export const getStaticPaths = (async () => {
-    const posts = await getCollection("posts");
+	const posts = await getCollection('posts');
 
-    return posts.map((post) => ({
-        params: { id: post.id },
-        props: { post },
-    }));
+	return posts.map((post) => ({
+		params: { id: post.id },
+		props: { post },
+	}));
 }) satisfies GetStaticPaths;
 
 const { post } = Astro.props;
@@ -22,53 +22,53 @@ const { Content } = await render(post);
 ---
 
 <Page title={post.data.title}>
-    <article>
-        <!-- information of the post -->
-        <hgroup>
-            <h1>{post.data.title}</h1>
-            <p>{formatDate(post.data.createdDate)}</p>
-        </hgroup>
+	<article>
+		<!-- information of the post -->
+		<hgroup>
+			<h1>{post.data.title}</h1>
+			<p>{formatDate(post.data.createdDate)}</p>
+		</hgroup>
 
-        <!-- body -->
-        <Content />
-    </article>
+		<!-- body -->
+		<Content />
+	</article>
 </Page>
 
 <style>
-    hgroup {
-        margin: 2em 0;
+	hgroup {
+		margin: 2em 0;
 
-        & > h1 {
-            margin: 0;
-            font-size: 1.75em;
-        }
+		& > h1 {
+			margin: 0;
+			font-size: 1.75em;
+		}
 
-        & > p {
-            margin: 0;
-            margin-left: 0.25em;
-            margin-top: 0.25em;
+		& > p {
+			margin: 0;
+			margin-left: 0.25em;
+			margin-top: 0.25em;
 
-            color: rgb(81, 81, 81);
-            font-size: 0.9em;
-        }
-    }
+			color: rgb(81, 81, 81);
+			font-size: 0.9em;
+		}
+	}
 </style>
 
 <style is:global>
-    pre:has(> code) {
-        padding: 0.25em 0.5em;
+	pre:has(> code) {
+		padding: 0.25em 0.5em;
 
-        border: 0.25em double gray;
+		border: 0.25em double gray;
 
-        & > code {
-            font-size: 0.9em;
-        }
-    }
+		& > code {
+			font-size: 0.9em;
+		}
+	}
 
-    hr {
-        margin: 2em 0;
+	hr {
+		margin: 2em 0;
 
-        border: none;
-        border-top: 1px dashed gray;
-    }
+		border: none;
+		border-top: 1px dashed gray;
+	}
 </style>

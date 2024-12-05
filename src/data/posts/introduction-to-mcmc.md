@@ -1,15 +1,15 @@
 ---
-title: "Introduction to MCMC (Markov Chain Monte Carlo)"
+title: 'Introduction to MCMC (Markov Chain Monte Carlo)'
 createdDate: 2024-12-05
-tags: ["primer"]
+tags: ['primer']
 ---
 
 **How do you define a Markov Chain?**
 
 A Markov chain $MC_{S, T}$ depends on:
 
-* State space: $S$
-* Transition function: $T: S \times S \mapsto [0, 1]$
+- State space: $S$
+- Transition function: $T: S \times S \mapsto [0, 1]$
 
 In addition, $\forall x \in S, T(x, *)$ is a probability.
 

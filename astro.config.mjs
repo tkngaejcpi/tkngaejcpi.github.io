@@ -6,12 +6,12 @@ import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [],
+	integrations: [],
 
-  markdown: {
-    syntaxHighlight: false,
-    
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex]
-  }
+	markdown: {
+		syntaxHighlight: false,
+
+		remarkPlugins: [remarkMath],
+		rehypePlugins: [rehypeKatex],
+	},
 });

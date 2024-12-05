@@ -4,8 +4,8 @@ import '@fontsource-variable/noto-serif-tc';
 import '@fontsource-variable/jetbrains-mono';
 
 interface Props {
-    title: string;
-    description?: string;
+	title: string;
+	description?: string;
 }
 
 const { title, description } = Astro.props;
@@ -13,59 +13,65 @@ const { title, description } = Astro.props;
 
 <!doctype html>
 <html lang="zh">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="generator" content={Astro.generator} />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
 
-        <!-- metadata -->
-        <title>{title}</title>
-        <meta name="description" content={description} />
-    </head>
-    <body>
-        <main>
-            <slot />
-        </main>
-    </body>
+		<!-- metadata -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+	</head>
+	<body>
+		<main>
+			<slot />
+		</main>
+	</body>
 </html>
 
 <style is:global>
-    /* layout */
-    html,
-    body {
-        margin: 0;
-        width: 100%;
-    }
+	/* layout */
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+	}
 
-    main {
-        margin: 1em auto;
-        width: 80%;
+	main {
+		margin: 1em auto;
+		width: 80%;
 
 		/* responsive */
 		@media (min-width: 24em) {
 			margin: 2em auto;
 		}
-    }
+	}
 
-    /* font */
-    body {
-        font-family: "Noto Serif HK Variable", "Noto Serif TC Variable", serif, system-ui, sans-serif;
-        font-weight: 500;
-    }
+	/* font */
+	body {
+		font-family: 'Noto Serif HK Variable', 'Noto Serif TC Variable', serif,
+			system-ui, sans-serif;
+		font-weight: 500;
+	}
 
-    h1, h2, h3, h4, h5, h6 {
-        font-weight: 600;
-    }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: 600;
+	}
 
-    code {
-        font-family: "Jetbrains Mono Variable", monospace;
-        font-weight: 400;
-    }
+	code {
+		font-family: 'Jetbrains Mono Variable', monospace;
+		font-weight: 400;
+	}
 
-    /* color */
-    body {
-        color: rgb(34, 34, 34);
-        background-color: rgb(253, 246, 227);
-    }
+	/* color */
+	body {
+		color: rgb(34, 34, 34);
+		background-color: rgb(253, 246, 227);
+	}
 </style>
