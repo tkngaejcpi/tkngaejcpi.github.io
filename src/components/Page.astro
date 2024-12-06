@@ -24,21 +24,13 @@ const { title, description = '' } = Astro.props;
 		<meta name="description" content={description} />
 	</head>
 	<body>
-		<main>
-			<slot />
-		</main>
+		<slot />
 	</body>
 </html>
 
 <style is:global>
 	/* layout */
-	html,
 	body {
-		margin: 0;
-		width: 100%;
-	}
-
-	main {
 		margin: 0 auto;
 		padding: 1em 0;
 		width: 80%;
