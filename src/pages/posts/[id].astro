@@ -57,6 +57,10 @@ const { Content } = await render(post);
 
 <!-- markdown content -->
 <style is:global>
+	.katex-display {
+		overflow-x: scroll;
+	}
+
 	pre:has(> code) {
 		padding: 0.25em 0.5em;
 
