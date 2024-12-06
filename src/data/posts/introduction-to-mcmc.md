@@ -6,7 +6,7 @@ tags: ['primer']
 
 **How do you define a Markov Chain?**
 
-A Markov chain $MC_{S, T}$ depends on:
+A Markov chain is essentially:
 
 - State space: $S$
 - Transition function: $T: S \times S \mapsto [0, 1]$
@@ -21,30 +21,38 @@ Let $p_t$ be a distribution at moment $t$,
 then the distribution at moment $t + 1$ is:
 
 $$
-\begin{aligned}
-p_{t + 1} (x)
-&= MC_{S, T}[p_t](x) \\
-&= \int_S p_t(y) T(y, x) dy
-\end{aligned}
+p_{t + 1} (x)= \sum_{y \in S} p_t(y) T(y, x)
 $$
 
-If $p_t$ is a fixed state,
-which $\exist! x_0, p_t(x_0) = 1$,
-then:
+If $p_t$ is a fixed state of $x_0 \in S$,
+which:
+
+$$
+p_t(x)=
+\begin{cases}
+0 & x \neq x_0 \\
+1 & x = x_0
+\end{cases}
+$$
+
+Then:
 
 $$
 \begin{aligned}
 p_{t + 1}(x)
-&= \int_S p_t(y) T(y, x) dy \\
+&= \sum_{y \in S} p_t(y) T(y, x) \\
 &= T(x_0, x)
 \end{aligned}
 $$
+
+Intuitively,
+a Markov chain have a probability $T(x_0, x)$ to change a state $x_0$ to $x$ in "a moment".
 
 ---
 
 **What is the stationary distribution of a Markov Chain?**
 
-Distribution $p_t$ is the stationary distribution of the Markov chain if only if $p_{t + 1} = p_t$.
+Distribution $p_t$ is the stationary distribution of the Markov chain if and only if $p_{t + 1} = p_t$.
 
 Once the distribution becomes a stationary distribution in the Markov chain,
 it "stays" in that distribution.
@@ -61,14 +69,16 @@ $$
 p(x) T(x, y) = p(y) T(y, x)
 $$
 
-Meanwhile, it is a stationary distribution, because:
+Meanwhile,
+it is a stationary distribution,
+ecause:
 
 $$
 \begin{aligned}
 p_{t + 1} (x)
-&= \int_S p_t(y) T(y, x) dy \\
-&= \int_S p_t(x) T(x, y) dy \\
-&= p_t(x) \int_S T(x, y) dy \\
+&= \sum_{y \in S} p_t(y) T(y, x) \\
+&= \sum_{y \in S} p_t(x) T(x, y) \\
+&= p_t(x) \sum_{y \in S} T(x, y) \\
 &= p_t(x)
 \end{aligned}
 $$
