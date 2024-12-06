@@ -6,7 +6,7 @@ tags: ['primer']
 
 **How do you define a Markov Chain?**
 
-A Markov chain is essentially:
+A Markov chain is essentially a tuple of:
 
 - State space: $S$
 - Transition function: $T: S \times S \mapsto [0, 1]$
@@ -46,7 +46,7 @@ p_{t + 1}(x)
 $$
 
 Intuitively,
-a Markov chain have a probability $T(x_0, x)$ to change a state $x_0$ to $x$ in "a moment".
+a Markov chain have a probability of $T(x_0, x)$ to change a state $x_0$ to $x$ in "a moment".
 
 ---
 
@@ -55,7 +55,7 @@ a Markov chain have a probability $T(x_0, x)$ to change a state $x_0$ to $x$ in 
 Distribution $p_t$ is the stationary distribution of the Markov chain if and only if $p_{t + 1} = p_t$.
 
 Once the distribution becomes a stationary distribution in the Markov chain,
-it "stays" in that distribution.
+it "stays" in the distribution.
 
 ---
 
@@ -71,7 +71,7 @@ $$
 
 Meanwhile,
 it is a stationary distribution,
-ecause:
+because:
 
 $$
 \begin{aligned}
@@ -100,8 +100,11 @@ the distribution will "converge" to the target distribution.
 
 **What is the goal of Metropolis-Hasting method?**
 
-The goal is to sample from a distribution $p$,
-where we only know $f(x) \propto p(x)$,
-and the normalized constant is difficult to calculate.
+The goal of MH method is,
+to sample from a distribution $p$,
+which we don't know about.
+
+Instead, we know $f(x)$ where $f(x) \propto p(x)$,
+but the normalized constant is very difficult to calculate.
 
 ---
