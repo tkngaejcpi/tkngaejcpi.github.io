@@ -1,12 +1,15 @@
 import rss from '@astrojs/rss';
+
 import { getCollection } from 'astro:content';
+
+import { config } from '@config';
 
 export const GET = async (context) => {
 	const posts = await getCollection('posts');
 
 	return rss({
-		title: '枯之隨筆',
-		description: '枯之隨筆',
+		title: config.name,
+		description: config.name,
 		site: context.site,
 
 		items: posts.map((post) => ({

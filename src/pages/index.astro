@@ -1,9 +1,11 @@
 ---
+import { config } from '@config';
+
 import Catalog from '@components/Catalog.astro';
 import Page from '@components/Page.astro';
 ---
 
-<Page title="枯之隨筆">
+<Page title={config.name}>
 	<div class="container">
 		<Catalog tag="primer" title="Primer" />
 	</div>

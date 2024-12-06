@@ -4,6 +4,8 @@ import 'katex/dist/katex.min.css';
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 
+import { config } from '@config';
+
 import Page from '@components/Page.astro';
 
 export const getStaticPaths = (async () => {
@@ -31,7 +33,7 @@ const { Content } = await render(post);
 
 		<!-- footer -->
 		<footer>
-			此作品發佈於<a href="/">枯之隨筆</a>，任何人都可以使用 <a
+			此作品發佈於<a href="/">{config.name}</a>，任何人都可以使用 <a
 				href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant"
 				>CC BY-SA 4.0 授權條款</a
 			>來分享與修改此作品。
