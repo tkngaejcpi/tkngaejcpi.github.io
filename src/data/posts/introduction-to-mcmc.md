@@ -25,7 +25,7 @@ p_{t + 1} (x)= \sum_{y \in S} p_t(y) T(y, x)
 $$
 
 If $p_t$ is a fixed state of $x_0 \in S$,
-which:
+i.e.:
 
 $$
 p_t(x)=
@@ -93,7 +93,7 @@ it is instead a general idea to sample from distribution.
 You have to design a Markov chain,
 whose stationary distribution is the distribution we want to sample from.
 
-After serveral steps in the Markov chain,
+After serveral moments,
 the distribution will "converge" to the target distribution.
 
 ---
@@ -106,5 +106,3 @@ which we don't know about.
 
 Instead, we know $f(x)$ where $f(x) \propto p(x)$,
 but the normalized constant is very difficult to calculate.
-
----
