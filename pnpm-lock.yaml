@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      '@astrojs/rss':
+        specifier: ^4.0.10
+        version: 4.0.10
       '@fontsource-variable/jetbrains-mono':
         specifier: ^5.1.1
         version: 5.1.1
@@ -61,6 +64,12 @@ packages:
         integrity: sha512-GilTHKGCW6HMq7y3BUv9Ac7GMe/MO9gi9GW62GzKtth0SwukCu/qp2wLiGpEujhY+VVhaG9v7kv/5vFzvf4NYw==,
       }
     engines: { node: ^18.17.1 || ^20.3.0 || >=22.0.0 }
+
+  '@astrojs/rss@4.0.10':
+    resolution:
+      {
+        integrity: sha512-2gFdHM763uUAySkdwPYrpi6dppOBJr9ddg5VbkKXctWze8d1JHgIBBY78zWIYs7KBJT58zxadsObVAVt55RDaw==,
+      }
 
   '@astrojs/telemetry@3.2.0':
     resolution:
@@ -1371,6 +1380,13 @@ packages:
       }
     engines: { node: '>=8.6.0' }
 
+  fast-xml-parser@4.5.0:
+    resolution:
+      {
+        integrity: sha512-/PlTQCI96+fZMAOLMZK4CWG1ItCbfZ/0jx7UIJFChPNrx7tcEgerUgWbeieCM9MfHInUDyK8DWYZ+YrywDJuTg==,
+      }
+    hasBin: true
+
   fastq@1.17.1:
     resolution:
       {
@@ -2375,6 +2391,12 @@ packages:
       }
     engines: { node: '>=4' }
 
+  strnum@1.0.5:
+    resolution:
+      {
+        integrity: sha512-J8bbNyKKXl5qYcR36TIO8W3mVGVHrmmxsd5PAItGkmyzwJvybiw2IVq5nqd0i4LSNSkB/sx9VHllbfFdr9k1JA==,
+      }
+
   suf-log@2.5.3:
     resolution:
       {
@@ -2707,6 +2729,11 @@ snapshots:
   '@astrojs/prism@3.2.0':
     dependencies:
       prismjs: 1.29.0
+
+  '@astrojs/rss@4.0.10':
+    dependencies:
+      fast-xml-parser: 4.5.0
+      kleur: 4.1.5
 
   '@astrojs/telemetry@3.2.0':
     dependencies:
@@ -3375,6 +3402,10 @@ snapshots:
       glob-parent: 5.1.2
       merge2: 1.4.1
       micromatch: 4.0.8
+
+  fast-xml-parser@4.5.0:
+    dependencies:
+      strnum: 1.0.5
 
   fastq@1.17.1:
     dependencies:
@@ -4256,6 +4287,8 @@ snapshots:
       ansi-regex: 6.1.0
 
   strip-bom@3.0.0: {}
+
+  strnum@1.0.5: {}
 
   suf-log@2.5.3:
     dependencies:

@@ -10,6 +10,7 @@
 		"fmt": "prettier -w ./"
 	},
 	"dependencies": {
+		"@astrojs/rss": "^4.0.10",
 		"@fontsource-variable/jetbrains-mono": "^5.1.1",
 		"@fontsource-variable/noto-serif-hk": "^5.1.1",
 		"@fontsource-variable/noto-serif-tc": "^5.1.1",
