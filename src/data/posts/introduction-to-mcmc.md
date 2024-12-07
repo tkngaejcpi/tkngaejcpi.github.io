@@ -6,7 +6,7 @@ tags: ['primer']
 
 **前置知識：**
 
-- [入門：馬可夫鏈](./introduction-to-markov-chain)
+- [入門：馬可夫鏈](/posts/introduction-to-markov-chain)
 
 ---
 
