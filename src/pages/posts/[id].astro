@@ -67,6 +67,9 @@ const { Content } = await render(post);
 	pre:has(> code) {
 		padding: 0.25em 0.5em;
 
+		overflow-x: scroll;
+		overflow-y: clip;
+
 		border: 0.25em double gray;
 
 		& > code {
