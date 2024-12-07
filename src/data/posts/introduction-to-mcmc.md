@@ -1,108 +1,107 @@
 ---
-title: 'Introduction to MCMC (Markov Chain Monte Carlo)'
-createdDate: 2024-12-05
+title: '入門：馬可夫鏈蒙地卡羅'
+createdDate: 2024-12-07
 tags: ['primer']
 ---
 
-**How do you define a Markov Chain?**
+**前置知識：**
 
-A Markov chain is essentially a tuple of:
-
-- State space: $S$
-- Transition function: $T: S \times S \mapsto [0, 1]$
-
-In addition, $\forall x \in S, T(x, *)$ is a probability.
+- [入門：馬可夫鏈](./introduction-to-markov-chain)
 
 ---
 
-**How do you apply a Markov chain to a distribution?**
+**什麼是馬可夫鏈蒙地卡羅?**
 
-Let $p_t$ be a distribution at moment $t$,
-then the distribution at moment $t + 1$ is:
+馬可夫鏈蒙地卡羅不是一個具體的算法，
+而是一類想法⸺通過設計馬可夫鏈，
+使得這個馬可夫鏈的穩態分佈是我們的目標分佈。
 
-$$
-p_{t + 1} (x)= \sum_{y \in S} p_t(y) T(y, x)
-$$
-
-If $p_t$ is a fixed state of $x_0 \in S$,
-i.e.:
-
-$$
-p_t(x)=
-\begin{cases}
-0 & x \neq x_0 \\
-1 & x = x_0
-\end{cases}
-$$
-
-Then:
-
-$$
-\begin{aligned}
-p_{t + 1}(x)
-&= \sum_{y \in S} p_t(y) T(y, x) \\
-&= T(x_0, x)
-\end{aligned}
-$$
-
-Intuitively,
-a Markov chain have a probability of $T(x_0, x)$ to change a state $x_0$ to $x$ in "a moment".
+如此，
+在若干步以後，
+初始分佈將會「收斂」於我們想採樣的分佈上。
 
 ---
 
-**What is the stationary distribution of a Markov Chain?**
+**Metropolis-Hasting 方法適用於什麼場景？**
 
-Distribution $p_t$ is the stationary distribution of the Markov chain if and only if $p_{t + 1} = p_t$.
+我們希望對 $p$ 進行採樣，
+但只知道它的核心 $f(x) \propto p(x)$。
 
-Once the distribution becomes a stationary distribution in the Markov chain,
-it "stays" in the distribution.
-
----
-
-**What is the detail balance condition?**
-
-If the detail balance condition holds for a distribution $p$,
-it means:
-
-$$
-\forall x, y \in S,
-p(x) T(x, y) = p(y) T(y, x)
-$$
-
-Meanwhile,
-it is a stationary distribution,
-because:
-
-$$
-\begin{aligned}
-p_{t + 1} (x)
-&= \sum_{y \in S} p_t(y) T(y, x) \\
-&= \sum_{y \in S} p_t(x) T(x, y) \\
-&= p_t(x) \sum_{y \in S} T(x, y) \\
-&= p_t(x)
-\end{aligned}
-$$
+這種情況下，$f(x)$ 的歸一化常數通常難以計算。
 
 ---
 
-**What is MCMC?**
+**如何利用 Metropolis-Hasting 方法採樣？**
 
-MCMC is not a concrete method,
-it is instead a general idea to sample from distribution.
+1. 選擇一個可直接生成的分佈 $g(* | x_t)$
+2. 指定初始樣本 $x_1$
+3. 利用上一個樣本 $x_t$ 生成候選樣本 $y \sim g(*|x_t)$
+4. 以 $A(x_t \to y)$ 的概率接受 $x_{t + 1} = y$，否則令 $x_{t + 1} = x_t$
+5. 回到 (3) 或者結束
 
-You have to design a Markov chain,
-whose stationary distribution is the distribution we want to sample from.
+其中，$A(a \to b) = \min \{1,  (f(b) / f(a)) (g(a | b) / g(b | a)) \}$。
 
-After serveral moments,
-the distribution will "converge" to the target distribution.
+此外，如果 $g(* | x_t)$ 是對稱分佈，
+比如説 $g(* | x_t) = N(x_t, \sigma^2)$，
+那麼 $g(a | b) / g(b | a) = 1$。
 
 ---
 
-**What is the goal of Metropolis-Hasting method?**
+**如何代碼實現 Metropolis-Hasting 方法？**
 
-The goal of MH method is,
-to sample from a distribution $p$,
-which we don't know about.
+利用正態分佈取樣 Cauchy 分佈：
 
-Instead, we know $f(x)$ where $f(x) \propto p(x)$,
-but the normalized constant is very difficult to calculate.
+```r
+rounds <- 10000
+sigma <- 2
+
+x <- numeric(rounds)
+u <- runif(rounds)
+
+f <- function(x) {
+  return ((x / sigma^2) * exp(- (x ^ 2) / (2 * sigma ^ 2)))
+}
+
+x[1] <- rchisq(1, df = 1)
+
+for (i in 2:rounds){
+  xt <- x[i - 1]
+  y <- rchisq(1, df = xt)
+
+  r <- (f(y) / f(xt)) * (dchisq(xt, df = y) / dchisq(y, df = xt))
+
+  if(u[i] <= r) {
+    x[i] <- y
+  } else {
+    x[i] <- xt
+  }
+}
+```
+
+---
+
+**為什麼 Metropolis-Hasting 方法在數學上成立？**
+
+候選樣本的拒絕概率 $A(a \to b)$ 是被刻意構造的，
+使得：
+
+$$
+\frac{A(a \to b)}{A(b \to a)}
+= \frac{f(b)}{f(a)} \frac{g(a | b)}{g(b | a)}
+$$
+
+又因為 $f(x) \propto p(x)$，所以：
+
+$$
+p(a) g(b | a) A(a \to b)
+= p(b) g(a | b) A(b \to a)
+$$
+
+換言之：
+
+$$
+p(a) T(a \to b) = p(b) T(b \to a)
+$$
+
+即分佈 $p$ 可使馬可夫鏈達到細緻平衡，
+所以 $p$ 也是該馬可夫鏈的穩態分佈。
