@@ -3,11 +3,11 @@ import { getCollection } from 'astro:content';
 
 interface Props {
 	tag: string;
-	title: string;
+	title?: string;
 	maxLength?: number;
 }
 
-const { tag, title, maxLength = 10 } = Astro.props;
+const { tag, title = tag, maxLength = 10 } = Astro.props;
 
 const postsWithTag = (await getCollection('posts'))
 	.filter((post) => post.data.tags.includes(tag))
@@ -37,6 +37,9 @@ const postsWithTag = (await getCollection('posts'))
 
 	ul {
 		padding-left: 1em;
+
+		line-height: 1.75em;
+
 		list-style: disclosure-closed;
 	}
 </style>
