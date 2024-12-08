@@ -1,23 +1,26 @@
 ---
-title: '入門：馬可夫鏈'
+title: 'Introduction to Markov Chain'
 createdDate: 2024-12-05
 tags: ['primer']
 ---
 
-**什麼是馬可夫鏈？**
+**What is a Markov chain?**
 
-馬可夫鏈本質上描述了一系列的隨機狀態轉移⸺如果當前狀態為 $s_t$，
-那麼在下一步有 $T(s_t \to s_{t + 1})$ 的概率轉移到狀態 $s_{t + 1}$。
+A Markov chain describes a process of random state transition.
 
-在馬可夫鏈的模型中，
-下一步的狀態的分佈僅僅取決於當前的狀態。
+In the chain,
+the distribution of the next state only depends on the current state.
+
+If you are now at state $s_t$,
+in the next step,
+you will move to state $s_{t + 1}$ with a probability of $T(s_t \to s_{t + 1})$.
 
 ---
 
-**如何在馬可夫鏈中迭代狀態分佈？**
+**How do you advance a step for the state distribution?**
 
-如果當前狀態分佈為 $p_t$，
-那麼在下一步的狀態分佈為：
+Let the current state distribution be $p_t$,
+the state distribution in the next step is given by:
 
 $$
 p_{t + 1} (x)= \sum_s p_t(s) T(s \to x)
@@ -25,15 +28,17 @@ $$
 
 ---
 
-**為什麼要從分佈的角度來考慮馬可夫鏈？**
+**Why should you consider the state distribution, instead of just the state?**
 
-因為即使目前狀態是固定的 $s_t$，
-它下一步的狀態依然是一個分佈 $T(s_t \to *)$。
+Even if you start with a fixed state $s_t$,
+just after a step,
+it becomes a state distribution $T(s_t \to *)$.
 
-如果我們要在馬可夫鏈中進行迭代的話，
-直接從分佈的角度考慮是更可取的。
+By always considering the state distribution,
+you can facilitate the iteration of the state in the chain.
 
-此時，固定狀態 $s$ 可以看作一種特殊的分佈 $p_t$：
+A fixed state $s$ can be considered as a special state distribution,
+which is:
 
 $$
 p_t(x)=
@@ -45,27 +50,27 @@ $$
 
 ---
 
-**什麼是穩態分佈？**
+**What is a stationary distribution?**
 
-如果狀態分佈 $p_t$ 是穩態分佈，
-那麼它在下一步的分佈 $p_{t + 1} = p_t$。
+A stationary distribution is a distribution $p_t$ that satisfies $p_{t + 1} = p_t$.
 
-在馬可夫鏈的迭代過程中，
-只要分佈變成了穩態分佈，
-它將一直保持在這個穩態分佈。
+Once the state distribution become stationary,
+it will remain same no matter how many steps are run.
 
 ---
 
-**什麼是細緻平衡？**
+**What is the detailed balance condition?**
 
-如果一個狀態分佈 $p_t$ 達到細緻平衡，
-那麼對任何狀態 $s_1, s_2 $，它都滿足：
+If the detailed balance condition holds for a distribution $p_t$,
+it means for any states $s_1, s_2$,
+distribution $p_t$ satisfies:
 
 $$
-p(s_1) T(s_1 \to s_2) = p(s_2) T(s_2 \to s_1)
+p_t(s_1) T(s_1 \to s_2) = p_t(s_2) T(s_2 \to s_1)
 $$
 
-這意味着，$p_t$ 是一個穩態分佈，因為：
+It also implies $p_t$ is a stationary distribution,
+because:
 
 $$
 \begin{aligned}
