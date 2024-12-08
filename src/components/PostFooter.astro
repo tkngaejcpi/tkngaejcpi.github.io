@@ -1,0 +1,33 @@
+---
+import { config } from '@config';
+
+interface Props {
+	copyrightReserved: boolean;
+}
+
+const { copyrightReserved } = Astro.props;
+---
+
+{
+	copyrightReserved ? (
+		<footer>
+			本文發佈於<a href="/">{config.name}</a>，未經允許禁止轉載
+		</footer>
+	) : (
+		<footer>
+			本文以{' '}
+			<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant">
+				CC BY-SA 4.0
+			</a>{' '}
+			授權條款發佈於<a href="/">{config.name}</a>
+		</footer>
+	)
+}
+
+<style>
+	footer {
+		color: #333333;
+		font-size: 0.8em;
+		text-align: center;
+	}
+</style>

@@ -4,9 +4,8 @@ import 'katex/dist/katex.min.css';
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render } from 'astro:content';
 
-import { config } from '@config';
-
 import Page from '@components/Page.astro';
+import PostFooter from '@components/PostFooter.astro';
 
 export const getStaticPaths = (async () => {
 	const posts = await getCollection('posts');
@@ -32,12 +31,7 @@ const { Content } = await render(post);
 		<hr />
 
 		<!-- footer -->
-		<footer>
-			本文以 <a
-				href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant"
-				>CC BY-SA 4.0</a
-			> 授權條款發佈於<a href="/">{config.name}</a>
-		</footer>
+		<PostFooter copyrightReserved={post.data.copyrightReserved} />
 	</article>
 </Page>
 
@@ -49,17 +43,12 @@ const { Content } = await render(post);
 	hr:has(+ footer) {
 		margin-bottom: 1em;
 	}
-
-	footer {
-		color: #333333;
-		font-size: 0.8em;
-		text-align: center;
-	}
 </style>
 
 <!-- markdown content -->
 <style is:global>
-	p {
+	p,
+	ul {
 		line-height: 1.75em;
 	}
 
