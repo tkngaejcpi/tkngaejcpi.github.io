@@ -1,6 +1,6 @@
 ---
-title: '致我身邊的人'
-createdDate: 2024-12-09
+title: '近況'
+createdDate: 1970-01-02
 tags: ['pinned']
 copyrightReserved: true
 ---
@@ -18,7 +18,7 @@ copyrightReserved: true
 **最近在聽：**
 
 - 王菲 -《唱遊》
-- Lana Del Rey -《Did You Know That There's a Tunnel Under Ocean Blvd》
+- Lana Del Rey -《<span style="font-feature-settings: 'halt'">Did You Know That There's a Tunnel Under Ocean Blvd</span>》
 
 ---
 
