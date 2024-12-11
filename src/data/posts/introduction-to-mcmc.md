@@ -50,7 +50,9 @@ The accepting probability $A(a \to b) = \min \{1,  (f(b) / f(a)) (g(a | b) / g(b
 
 **Implement Metropolis-Hasting sampler with R**
 
-An example of sampling Cauchy distribution with normal distribution:
+<details>
+
+<summary>An example of sampling Cauchy distribution with normal distribution</summary>
 
 ```r
 rounds <- 10000
@@ -78,6 +80,8 @@ for (i in 2:rounds){
   }
 }
 ```
+
+</details>
 
 ---
 
