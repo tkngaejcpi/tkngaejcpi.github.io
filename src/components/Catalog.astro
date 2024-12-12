@@ -11,7 +11,7 @@ const { tag, title = tag, maxLength = 10 } = Astro.props;
 
 const postsWithTag = (await getCollection('posts'))
 	.filter((post) => post.data.tags.includes(tag))
-	.sort((b, a) => a.data.createdDate - b.data.createdDate)
+	.sort((b, a) => a.data.createdDate.getTime() - b.data.createdDate.getTime())
 	.slice(0, maxLength);
 ---
 
