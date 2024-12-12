@@ -1,18 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 
+import { type PostFilter } from 'utils/post';
+
 interface Props {
-	tag: string;
-	title?: string;
-	maxLength?: number;
+	title: string;
+	postFilter: PostFilter;
 }
 
-const { tag, title = tag, maxLength = 10 } = Astro.props;
+const { title, postFilter } = Astro.props;
 
-const postsWithTag = (await getCollection('posts'))
-	.filter((post) => post.data.tags.includes(tag))
-	.sort((b, a) => a.data.createdDate.getTime() - b.data.createdDate.getTime())
-	.slice(0, maxLength);
+const posts = postFilter(await getCollection('posts'));
 ---
 
 <div>
@@ -20,7 +18,7 @@ const postsWithTag = (await getCollection('posts'))
 
 	<ul>
 		{
-			postsWithTag.map((post) => (
+			posts.map((post) => (
 				<li>
 					<a href={`/posts/${post.id}`}>{post.data.title}</a>
 				</li>

@@ -3,12 +3,18 @@ import { config } from '@config';
 
 import Catalog from '@components/Catalog.astro';
 import Page from '@components/Page.astro';
+
+import { mkFilterSeq, filterByTag, sortByDate, limit } from '@utils/post';
+
+const mkTagFilter = (tag: string) =>
+	mkFilterSeq(filterByTag(tag), sortByDate, limit(5));
 ---
 
 <Page title={config.name}>
 	<div class="container">
-		<Catalog tag="pinned" title="Pinned" />
-		<Catalog tag="primer" title="Primer" />
+		<Catalog title="Pinned" postFilter={mkTagFilter('pinned')} />
+		<Catalog title="Narrative" postFilter={mkTagFilter('narrative')} />
+		<Catalog title="Primer" postFilter={mkTagFilter('primer')} />
 	</div>
 </Page>
 
