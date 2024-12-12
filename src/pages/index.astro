@@ -8,6 +8,8 @@ import { mkFilterSeq, filterByTag, sortByDate, limit } from '@utils/post';
 
 const mkTagFilter = (tag: string) =>
 	mkFilterSeq(filterByTag(tag), sortByDate, limit(5));
+
+const now = new Date();
 ---
 
 <Page title={config.name}>
@@ -15,6 +17,15 @@ const mkTagFilter = (tag: string) =>
 		<Catalog title="Pinned" postFilter={mkTagFilter('pinned')} />
 		<Catalog title="Narrative" postFilter={mkTagFilter('narrative')} />
 		<Catalog title="Primer" postFilter={mkTagFilter('primer')} />
+
+		<div>
+			<h2>Info</h2>
+
+			<ul>
+				<li>於 <a href="/archives">Archives</a> 查看所有貼文</li>
+				<li>本快照於 {now.toLocaleDateString()} 構建</li>
+			</ul>
+		</div>
 	</div>
 </Page>
 
@@ -25,5 +36,19 @@ const mkTagFilter = (tag: string) =>
 		display: flex;
 		flex-direction: column;
 		gap: 2em;
+	}
+
+	h2 {
+		margin-top: 0em;
+
+		font-size: 1.5em;
+	}
+
+	ul {
+		padding-left: 1em;
+
+		line-height: 1.75em;
+
+		list-style: disclosure-closed;
 	}
 </style>

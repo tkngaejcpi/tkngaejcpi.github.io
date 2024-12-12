@@ -35,6 +35,28 @@ interface Pipe {
 export const pipe: Pipe = (x: unknown, ...fns: Fn<unknown, unknown>[]) =>
 	fns.reduce((prev, fn) => fn(prev), x);
 
+export const map: <A, B>(fn: Fn<A, B>) => Fn<A[], B[]> = (fn) => (a) =>
+	a.map(fn);
+
+export const filter: <A>(fn: Fn<A, boolean>) => Opr<A[]> = (fn) => (a) =>
+	a.filter(fn);
+
+/**
+ * @param fn a function to determine if two element is equal
+ * @returns a list with only unique element
+ */
+export const unique: <A>(fn: (_: A, __: A) => boolean) => Opr<A[]> =
+	(fn) => (lst) => {
+		if (lst.length == 1) return lst;
+
+		const x = lst[0];
+		const xs = lst.slice(1);
+
+		return xs.filter((y) => fn(y, x)).length == 0
+			? [x, ...unique(fn)(xs)]
+			: unique(fn)(xs);
+	};
+
 export const mergeOprs: <T>(...oprs: Opr<T>[]) => Opr<T> = (...oprs) => {
 	if (oprs.length == 1) {
 		return oprs[0];

@@ -1,0 +1,38 @@
+---
+import { config } from '@config';
+
+import Catalog from '@components/Catalog.astro';
+import Page from '@components/Page.astro';
+
+import {
+	queryUniqueYearMonths,
+	mkFilterSeq,
+	sortByDate,
+	filterByYearMonth,
+} from '@utils/post';
+
+const yearMonths = (await queryUniqueYearMonths()).sort().reverse();
+---
+
+<Page title={config.name}>
+	<div class="container">
+		{
+			yearMonths.map(([year, month]) => (
+				<Catalog
+					title={`${year}/${(month + 1).toString().padStart(2, '0')}`}
+					postFilter={mkFilterSeq(filterByYearMonth(year, month), sortByDate)}
+				/>
+			))
+		}
+	</div>
+</Page>
+
+<style>
+	div.container {
+		padding: 2em 1em;
+
+		display: flex;
+		flex-direction: column;
+		gap: 2em;
+	}
+</style>
