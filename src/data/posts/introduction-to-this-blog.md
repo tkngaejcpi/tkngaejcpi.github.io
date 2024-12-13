@@ -6,7 +6,7 @@ tags: ['pinned']
 
 貼文大概分為：
 
-- Pinned：置頂，與「我」相關
+- Pinned：置頂，與「我」、本站相關
 - Narrative：説事
 - Primer：功能性文本
 
