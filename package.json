@@ -10,6 +10,7 @@
 		"fmt": "prettier -w ./"
 	},
 	"dependencies": {
+		"@astrojs/check": "^0.9.4",
 		"@astrojs/rss": "^4.0.10",
 		"@astrojs/sitemap": "^3.2.1",
 		"@fontsource-variable/jetbrains-mono": "^5.1.1",
@@ -19,9 +20,11 @@
 		"katex": "^0.16.11",
 		"rehype-katex": "^7.0.1",
 		"remark-math": "^6.0.0",
-		"sanitize-html": "^2.13.1"
+		"sanitize-html": "^2.13.1",
+		"typescript": "^5.7.2"
 	},
 	"devDependencies": {
+		"@types/sanitize-html": "^2.13.0",
 		"prettier": "^3.4.2",
 		"prettier-plugin-astro": "^0.14.1"
 	}
