@@ -3,6 +3,8 @@ import '@fontsource-variable/noto-serif-hk';
 import '@fontsource-variable/noto-serif-tc';
 import '@fontsource-variable/jetbrains-mono';
 
+import { config } from '@config';
+
 interface Props {
 	title: string;
 	description?: string;
@@ -18,6 +20,12 @@ const { title, description = '' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title={config.name}
+			href={new URL('rss.xml', Astro.site)}
+		/>
 
 		<!-- metadata -->
 		<title>{title}</title>
